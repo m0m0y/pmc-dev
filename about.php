@@ -66,15 +66,15 @@
             
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-4 col-12 text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="col-md-4 col text-center" data-aos="fade-up" data-aos-delay="200">
                             <h2>6257</h2>
                             <p>Customer</p>
                         </div>
-                        <div class="col-md-4 col-12 text-center" data-aos="fade-up" data-aos-delay="300">
+                        <div class="col-md-4 col text-center" data-aos="fade-up" data-aos-delay="300">
                             <h2>5124</h2>
                             <p>Products</p>
                         </div>
-                        <div class="col-md-4 col-12 text-center" data-aos="fade-up" data-aos-delay="400">
+                        <div class="col-md-4 col text-center" data-aos="fade-up" data-aos-delay="400">
                             <h2>10</h2>
                             <p>Branches</p>
                         </div>

@@ -97,18 +97,15 @@ class mailTemplate {
             line-height: 20px;
             font-family: Georgia, Arial, sans-serif;
           }
-          </style>
-    
-          <style>
+          .container600 {
+            width: 600px;
+            max-width: 100%;
+          }
+          @media all and (max-width: 599px) {
             .container600 {
-                width: 600px;
-                max-width: 100%;
+                width: 100% !important;
             }
-            @media all and (max-width: 599px) {
-                .container600 {
-                    width: 100% !important;
-                }
-            }
+          }
         </style>
     
         <body style="background-color:#F4F4F4;padding:20px;">
@@ -130,8 +127,8 @@ class mailTemplate {
                             <table width="100%" cellpadding="0" cellspacing="0" style="min-width:100%;">
                                 <thead>
                                 <tr>
-                                    <th scope="col" style="padding:5px; font-family: Arial,sans-serif; font-size: 16px; line-height:20px;line-height:30px;text-align:left;">Name:</th>
-                                    <th scope="col" style="padding:5px; font-family: Arial,sans-serif; font-size: 16px; line-height:20px;line-height:30px;text-align:left;">'.$name.'</th>
+                                    <th scope="col" style="padding:5px; font-family: Arial,sans-serif; font-size: 16px; line-height:20px;text-align:left;">Name:</th>
+                                    <th scope="col" style="padding:5px; font-family: Arial,sans-serif; font-size: 16px; line-height:20px;text-align:left;">'.$name.'</th>
                                 </tr>
                                 </thead>
                                 <tbody>

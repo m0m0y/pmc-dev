@@ -75,15 +75,15 @@ $captcha = $random_strings->captcha();
                 
                     <div class="col-md-6" data-aos="fade-left">
                         <div class="row">
-                            <div class="col-md-4 col-12 text-center">
+                            <div class="col-md-4 col text-center">
                                 <h2 class="number">6257</h2>
                                 <p class="type">Customer</p>
                             </div>
-                            <div class="col-md-4 col-12 text-center">
+                            <div class="col-md-4 col text-center">
                                 <h2 class="number">5124</h2>
                                 <p class="type">Products</p>
                             </div>
-                            <div class="col-md-4 col-12 text-center">
+                            <div class="col-md-4 col text-center">
                                 <h2 class="number">10</h2>
                                 <p class="type">Branches</p>
                             </div>
@@ -218,7 +218,7 @@ $captcha = $random_strings->captcha();
                 </div>
 
                 <div class="row g-2 g-lg-3">
-                    <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-md-12 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                         <article class="entry mb-md-5 mb-lg-0 mb-xl-0">
                             <div class="entry-img mb-4">
                                 <img src="https://pmc.ph/app/static/image/pmc%20(1).jpg" alt="celebrating-golden-milestone" class="img-fluid">
@@ -237,14 +237,11 @@ $captcha = $random_strings->captcha();
                                 Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
                                 Et eveniet enim... <a href="#" class="text-decoration-underline">Read More</a>
                                 </p>
-                                <!-- <div class="read-more">
-                                    <a href="#" class="d-print-inline-block text-white">Read More</a>
-                                </div> -->
                             </div>
                         </article>
                     </div>
 
-                    <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-md-12 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                         <article class="entry mb-md-5 mb-lg-0 mb-xl-0">
                             <div class="entry-img mb-4">
                                 <img src="https://pmc.ph/app/static/image/6.jpg" alt="2022-top-madrid-protocol" class="img-fluid">
@@ -263,14 +260,11 @@ $captcha = $random_strings->captcha();
                                 Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
                                 Et eveniet enim... <a href="#" class="text-decoration-underline">Read More</a>
                                 </p>
-                                <!-- <div class="read-more">
-                                    <a href="#" class="d-print-inline-block text-white">Read More</a>
-                                </div> -->
                             </div>
                         </article>
                     </div>
 
-                    <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-md-12 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                         <article class="entry mb-md-5 mb-lg-0 mb-xl-0">
                             <div class="entry-img mb-4">
                                 <img src="https://pmc.ph/app/static/image/8.jpg" alt="28th-annual-convention" class="img-fluid">
@@ -288,9 +282,6 @@ $captcha = $random_strings->captcha();
                                 <p>
                                 Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta... <a href="#" class="text-decoration-underline">Read More</a>
                                 </p>
-                                <!-- <div class="read-more">
-                                    <a href="#" class="d-print-inline-block text-white">Read More</a>
-                                </div> -->
                             </div>
                         </article>
                     </div>
@@ -327,7 +318,7 @@ $captcha = $random_strings->captcha();
                     </div>
 
                     <div class="col-lg-8 mt-5 mt-lg-0">
-                        <form action="controller/controller.email.php" method="post" class="php-email-form shadow" id="contactForm">
+                        <form action="controller/controller.email" method="post" class="php-email-form shadow" id="contactForm">
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <div class="form-floating">

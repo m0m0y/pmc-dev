@@ -23,7 +23,7 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-4 col-xl-3 col-md-6 mt-4 mt-lg-4 mt-xl-0" data-aos="fade-up" data-aos-delay="100">
                        <div class="card shadow">
                             <div class="thumbnail">
                                 <div class="icon">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-lg-4 col-xl-3 col-md-6 mt-4 mt-lg-4 mt-xl-0" data-aos="fade-up" data-aos-delay="200">
                        <div class="card shadow">
                             <div class="thumbnail">
                                 <div class="icon">
@@ -59,7 +59,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-lg-4 col-xl-3 col-md-6 mt-4 mt-lg-4 mt-xl-0" data-aos="fade-up" data-aos-delay="300">
                        <div class="card shadow">
                             <div class="thumbnail">
                                 <div class="icon">
@@ -77,7 +77,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="400">
+                    <div class="col-lg-4 col-xl-3 col-md-6 mt-4 mt-lg-4 mt-xl-0" data-aos="fade-up" data-aos-delay="400">
                        <div class="card shadow">
                             <div class="thumbnail">
                                 <div class="icon">

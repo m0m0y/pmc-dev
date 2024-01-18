@@ -58,7 +58,7 @@ $captcha = $random_strings->captcha();
                     </div>
 
                     <div class="col-lg-8 mt-5 mt-lg-0">
-                        <form action="controller/controller.email.php" method="post" class="php-email-form shadow" id="contactForm">
+                        <form action="controller/controller.email.php?mode=contact" method="post" class="php-email-form shadow" id="contact_form">
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <div class="form-floating">

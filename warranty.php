@@ -27,8 +27,8 @@ $captcha = $random_strings->captcha();
         <section id="warranty-form" class="warranty-form">
             <div class="container">
 
-                <form action="controller/controller.warranty.php" method="post" id="warrant-form">
-                    <div class="mb-5 pb-md-5">
+                <form action="controller/controller.email.php?mode=warranty" method="post" id="warrant_form">
+                    <div class="mb-5 pb-lg-5">
                         <h3 class="fw-semibold mb-3 mb-md-4">Contact Information</h3>
 
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 mb-4">
@@ -68,7 +68,7 @@ $captcha = $random_strings->captcha();
                         </div>
                     </div>
 
-                    <div class="mb-5 pb-md-5">
+                    <div class="mb-5 pb-lg-5">
                         <h3 class="fw-semibold mb-3 mb-md-4">Product Information</h3>
 
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 mb-4">
@@ -188,7 +188,7 @@ $captcha = $random_strings->captcha();
                         </div>
                     </div>
 
-                    <div class="mb-md-5"><button type="submit" class="form-button">Register Warranty</button></div>
+                    <div class="mb-md-5"><button type="submit" class="form-button">Register Warranty <i class="bi bi-arrow-right-circle"></i> </button></div>
                 </form>
 
             </div>
