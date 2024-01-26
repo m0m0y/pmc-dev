@@ -16,7 +16,7 @@ switch($mode) {
         $users = $modelLogin->loginUser($username, $password); 
 
         if(!$users) {
-            $response = array("message" => "Invalid Account!");
+            $response = array("status" => 0);
             echo json_encode($response);
             exit;
         }
@@ -25,7 +25,7 @@ switch($mode) {
         $_SESSION["name"] = $users[1];
         $_SESSION["type"] = $users[4];
 
-        $response = array("message" => "Success!");
+        $response = array("status" => 1);
         break;
 
     default:

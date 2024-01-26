@@ -3,67 +3,72 @@ include "controller/controller.auth.php";
 $auth = new Auth();
 $isLoggedIn = $auth->getSession("auth");
 $auth->redirect($isLoggedIn, false, "dashboard.php");
-
+$pageTitle = "PMC Dashboard - Login";
 include "components/header.php";
 ?>
 
-<body>
-    <h1>Admin dashboard</h1>
+<body class="login_body">
+    <div class="container">
 
-    <form action="controller/controller.login.php?mode=login" method="POST" id="loginForm">
-        <input type="text" name="username" class="rounded-0" placeholder="username">
-        <input type="password" name="password" class="rounded-0" placeholder="password">
+        <div class="login_container row align-items-center">
+            <div class="col-xl-6 login_form align-self-center">
+                
+                <div class="form_border">
 
-        <button type="submit">Login</button>
-        <a href="fogot_password.php">Fogot Password</a>
-    </form>
+                    <center><h4>Login Form</h4></center>
 
-    <div id="preloader"></div>
+                    <form class="mt-5" action="controller/controller.login.php?mode=login" method="POST" id="loginForm">       
 
-    <script>
-        $(document).ready(function(){
+                        <div class="form-group">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="username" placeholder="" onkeyup="txtvalidator(this)">
+                                <label>Type your username here</label>
+                            </div>
+                        </div>
 
-            if ($("#preloader")) {
-                window.addEventListener("load", () => {
-                    $("#preloader").remove();
-                });
-            }
+                        <div class="form-group mt-3">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" name="password" placeholder="" onkeyup="txtvalidator(this)">
+                                <label>Your Password</label>
+                            </div>
+                        </div>
 
-            $("#loginForm").on("submit", function(e){
-                e.preventDefault();
+                        <div class="mt-4">
+                            <button type="submit" class="me-2">Login<i class="bi bi-box-arrow-in-right ms-1"></i></button>
+                            <a href="fogot_password.php?mode">Fogot Password ? <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </form>
 
-                var $inputs = $(this).find("input");
-                let action = $(this).attr("action");
-                let type = $(this).attr("method");
-                let formData = new FormData(this);
+                </div>
 
-                console.log("submitting form");
-                $inputs.prop("disabled", true);
-                $inputs.val("");
+            </div>
 
-                $.ajax({
-                    url: action,
-                    method: type,
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(res) {
-                        let res_value = jQuery.parseJSON(res);
-                        
-                        if(res_value["message"] === "Success!") {
-                            alert(res_value["message"]);
-                            window.location.href="dashboard.php";
-                        } else {
-                            alert(res_value["message"]);
-                            setTimeout(function() { location.reload(); }, 1000);
-                        }
+            <div class="col-xl-6 banner_img">
+                <img src="https://pmc.ph/app/static/image/bannermain-1.jpg" class="login_banner" alt="banner-image">
+            </div>
+        </div>
 
-                        $inputs.prop("disabled", false);
-                    }
-                });
-            })
-        });
-    </script>
+        <div class="modal fade login_modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <center>
+                            <i class="bi bi-exclamation-diamond-fill"></i>
+                            <p class="message_body"></p>
+                        </center>
+
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="button" class="primary_btn" data-bs-dismiss="modal">Okay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="assets/js/login.js"></script>
+    <?php include "components/footer.php";  ?>
 </body>
 
 <html>

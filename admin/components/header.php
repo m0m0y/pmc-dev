@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Admin - Progressive Medical Corporation</title>
-  <meta content="" name="description">
+  <title><?= $pageTitle; ?></title>
+  <meta content="PMC WEBSITE - CMS" name="description">
   <meta content="" name="keywords">
 
   <link rel="pmc-icon" type="image/png" href="https://pmc.ph/app/static/ico.png">

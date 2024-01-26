@@ -8,11 +8,12 @@ $mode = isset($_GET["mode"]) ?  $_GET["mode"] : NULL;
 
 switch($mode) {
     case "add";
+        $email = $_POST["email"];
         $username = $_POST["username"];
         $password = $_POST["password"];
         $status = $_POST["status"];
         $type = $_POST["user_type"];
-        $userRegistration = $userRegistration->registerUser($username, $password, $status, $type);
+        $userRegistration = $userRegistration->registerUser($email, $username, $password, $status, $type);
 
         $response = array("message" => "Successfully Register!");
         break;

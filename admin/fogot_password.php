@@ -1,64 +1,120 @@
 <?php
+$pageTitle = "PMC Dashboard - Forgot Password";
 include 'components/header.php';
 ?>
 
-<body>
-    <h1>Forgot Password</h1>
+<body class="forgot_body">
+    <div class="container">
 
-    <form action="controller/controller.email.php?mode=forgotPassword" method="post" id="forgotForm">
-        <input type="text" name="username" placeholder="Username">
-        <br>
-        <input type="email" name="email" placeholder="Email Address">
-        <br><br>
+        <?php if(empty($_GET["mode"])) { ?>
 
-        <button type="submit">Submit</button>
-        <a href="login.php">Login</a>
-    </form>
+            <div class="forgot_container">
 
-    <div id="preloader"></div>
+                <div class="form_border">
 
-    <script>
-        $(document).ready(function() {
+                    <center><h3>Forgot Password</h3></center>
 
-            if ($("#preloader")) {
-                window.addEventListener("load", () => {
-                    $("#preloader").remove();
-                });
-            }
+                    <form class="mt-5" action="controller/controller.resetpass.php?mode=forgotPassword" method="post" id="resetPassForm">
 
-            $("#forgotForm").on("submit", function(e) {
-                e.preventDefault();
+                        <div class="info_alert_msg">
+                            <p class="m-0">We will send you a link to your email to change your password.</p>
+                        </div>
 
-                var $inputs = $(this).find("input");
-                let action = $(this).attr("action");
-                let type = $(this).attr("method");
-                let formData = new FormData(this);
+                        <div class="form-group mt-4">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="f_username" placeholder="">
+                                <label>Type your username here</label>
+                            </div>
+                        </div>
 
-                $inputs.prop("disabled", true);
-                $inputs.val("");
+                        <div class="form-group mt-3">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" name="f_email" placeholder="">
+                                <label>Email address</label>
+                            </div>
+                        </div>
 
-                $.ajax({
-                    url: action,
-                    method: type,
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(res) {
-                        let res_value = jQuery.parseJSON(res);
-                        
-                        // if(res_value["message"] === "Success!") {
-                            alert(res_value["message"]);
-                        //     window.location.href="dashboard.php";
-                        // } else {
-                        //     alert(res_value["message"]);
-                        //     setTimeout(function() { location.reload(); }, 1000);
-                        // }
-                        $inputs.prop("disabled", false);
-                    }
-                });
-            })
-        })
-    </script>
+                        <div class="mt-4">
+                            <button type="submit" class="primary_btn me-2"><i class="bi bi-send me-1"></i> Submit</button>
+                            <a href="login.php">Login Account <i class="bi bi-arrow-right"></i></a>
+                        </div>
+
+                    </form>
+
+                </div>
+                
+            </div>
+        
+        <?php } else if($_GET["mode"] == "update_password") { 
+            $email = $_GET["email"];
+            ?>
+            <div class="update_container">
+
+                <div class="form_border">
+
+                    <center><h3>Update Password</h3></center>
+
+                    <form class="mt-5" action="controller/controller.resetpass.php?mode=updatePassword" method="post" id="resetPassForm">
+
+                        <div class="form-group mt-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="u_username" placeholder="">
+                                <label>Username</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" name="u_password" placeholder="">
+                                <label>New Password</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" name="u_confirm_password" placeholder="">
+                                <label>Confirm Password</label>
+                            </div>
+                        </div>
+
+                        <input type="email" name="email" value="<?= $email ?>" style="display: none;" readonly>
+
+                        <div class="danger_alert_msg mt-4" id="alert_msg"></div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="primary_btn me-2"><i class="bi bi-arrow-clockwise me-1"></i>Update</button>
+                            <a href="login.php">Login Account <i class="bi bi-arrow-right"></i></a>
+                        </div>
+
+                    </form>
+
+                </div>
+            
+            </div>
+        <?php } ?>
+
+        <div class="modal fade forgot_modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <center>
+                            <i class="bi bi-exclamation-diamond-fill"></i>
+                            <p class="message_body"></p>
+                        </center>
+
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="button" class="primary_btn" data-bs-dismiss="modal">Okay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="assets/js/forgot_password.js"></script>
+    <?php include "components/footer.php"; ?>
+
 </body>
 
 </html>

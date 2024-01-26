@@ -1,38 +1,87 @@
 <?php
+include "controller/controller.auth.php";
+$auth = new Auth();
+$useraccount = $auth->getSession("name");
+$isLoggedIn = $auth->getSession("auth");
+$auth->redirect($isLoggedIn, true, "login.php");
+$pageTitle = "PMC Dashboard - Add User's";
 include "components/header.php";
 ?>
 
 <body>
-    <nav class="nav flex-column" style="width: 15%;">
-        <a class="nav-link" href="dashboard.php">Dashboard</a>
-        <a class="nav-link" href="add_user.php">Register User</a>
-        <a class="nav-link" href="logout.php">Logout</a>
-    </nav>
-
+    <?php include "components/sidenav.php"; ?>
    
-    <main class="">
-        <div>
-            <h1>Register User</h1>
+    <main>
+        <div class="breadcrumbs">
+            <div class="d-flex px-3">
+                <div class="me-auto"><h3>Register User</h3></div>
 
-            <form action="controller/controller.register.php?mode=add" method="post" id="registrationForm">
-                <input type="text" name="username" class="rounded-0" placeholder="Username">
-                </br>
-                <input type="text" name="password" class="rounded-0" placeholder="Password">
-                </br>
-                <input type="text" name="confirm_password" class="rounded-0" placeholder="Confirm Password">
-                </br>
-                <select name="status">
-                    <option value="1">Disabled</option>
-                    <option value="0">Active</option>
-                </select>
-                </br>
-                <select name="user_type">
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
-                </select>
-                </br></br>
-                <button type="submit">Register Account</button>
-            </form>
+                <div class="align-self-center">
+                    <a href="#" class=""> <i class="bi bi-person-circle"></i> Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="register_container">
+            <div class="register_form">
+                
+                <div id="alert_msg"></div>
+
+                <form action="controller/controller.register.php?mode=add" method="post" id="registrationForm">
+
+                    <div class="mt-4 row">
+                        <label class="col-sm-2 col-form-label">Email:</label>
+                        <div class="col-sm-10">
+                            <input type="email" name="email" class="form-control" placeholder="email@example.com">
+                        </div>
+                    </div>
+
+                    <div class="mt-4 row">
+                        <label class="col-sm-2 col-form-label">Username:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="username" class="form-control" placeholder="Username">
+                        </div>
+                    </div>
+
+                    <div class="mt-4 row">
+                        <label class="col-sm-2 col-form-label">Password:</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="password" class="form-control" placeholder="********">
+                        </div>
+                    </div>
+
+                    <div class="mt-4 row">
+                        <label class="col-sm-2 col-form-label">Confirm:</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="confirm_password" class="form-control" placeholder="********">
+                        </div>
+                    </div>
+
+                    <div class="mt-4 row">
+                        <label class="col-sm-2 col-form-label">Status:</label>
+                        <div class="col-sm-10">
+                            <select class="form-select" name="status">
+                                <option value="0">Disabled</option>
+                                <option value="1">Active</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 row">
+                        <label class="col-sm-2 col-form-label">User Type:</label>
+                        <div class="col-sm-10">
+                            <select class="form-select" name="user_type">
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 d-flex justify-content-end">
+                        <button type="submit">Register Account</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
 
@@ -48,12 +97,26 @@ include "components/header.php";
             }
 
             $("#registrationForm").on("submit", function(e) {
-                e.preventDefault();
 
+                e.preventDefault();
+                let $inputs = $(this).find("input");
                 let action = $(this).attr("action");
                 let type = $(this).attr("method");
                 let formData = new FormData(this);
 
+                if($("input[name='email']").val() == "" || $("input[name='username']").val() == "" || $("input[name='password']").val() == "" || $("input[name='confirm_password']").val() == "" || $("select[name='status']").val() == "" || $("select[name='user_type']").val() == "") {
+                    $("#alert_msg").addClass("danger_alert_msg");
+                    $("#alert_msg").html("<p class='alert_message'>Please double check the field! <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
+                    $(".btn-close").click(function() { $("#alert_msg").fadeOut("slow"); });
+                    return false;
+                }
+
+                if($("input[name='password']").val() != $("input[name='confirm_password']").val()) {
+                    $("#alert_msg").addClass("danger_alert_msg");
+                    $("#alert_msg").html("<p class='alert_message'>Password did not match! <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
+                    $(".btn-close").click(function() { $("#alert_msg").fadeOut("slow"); });
+                    return false;
+                }
 
                 console.log("submitting form");
 
@@ -64,17 +127,12 @@ include "components/header.php";
                     processData: false,
                     contentType: false,
                     success: function(res) {
-                        let res_value = jQuery.parseJSON(res);
-                        
-                        if(res_value["message"] === "Success!") {
-                            alert(res_value["message"]);
-                            window.location.href="add_user.php";
-                        } else {
-                            // alert(res_value["message"]);
-                            // setTimeout(function() { location.reload(); }, 1000);
-                        }
+                        $("#alert_msg").addClass("success_alert_msg");
+                        $("#alert_msg").html("<p class='alert_message'>Registration successfully!</p>").fadeIn("slow").fadeOut(1900);
+                        $inputs.val("");
                     }
                 });
+
             })
         })
     </script>

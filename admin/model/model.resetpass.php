@@ -1,7 +1,26 @@
 <?php
 
-class ModelResetPassword {
-    public function resetPasswordEmail($username, $email) {
+class ModelResetPassword extends db_conn_mysql {
+
+    public function __construct() {
+        $this->conn = $this->db_conn();  
+    }
+
+    public function checkUser($username, $email) {
+        $query = $this->conn->prepare("SELECT username, email FROM users WHERE username = ? AND email = ? AND status = 0");
+        $query->execute([$username, $email]);
+        $response = $query->fetch();
+
+        return $response;
+    }
+
+    public function updatePassword($username, $password, $email) {
+        $query = $this->conn->prepare("UPDATE users SET username = ?, password = ? WHERE email = ?");
+        $query->execute([$username, $password, $email]);
+    }
+
+
+    public function resetPasswordMail($username, $email) {
         $bodyContent = '
         <!DOCTYPE html>
         <html>
@@ -135,11 +154,15 @@ class ModelResetPassword {
 
                                         <tbody>
                                             <tr>
+                                                <td valign="top" style="padding:5px; font-family: Poppins,sans-serif; font-size: 20px; line-height:25px; color:#424242;">Hello, <b>'.$username.'</b></td>
+                                            </tr>
+
+                                            <tr>
                                                 <td valign="top" style="padding:5px; font-family: Poppins,sans-serif; font-size: 15px; line-height:20px; color:#424242;">If you have lost your password or wish to reset it, use the link below to get started.</td>
                                             </tr>
 
                                             <tr>
-                                                <td valign="top" style="padding:5px;padding-top:20px; font-family: Poppins,sans-serif; font-size: 15px; line-height:20px;">Kindly click <a href = "http://localhost/pmc-dev/admin/fogot_password.php">this</a> to reset your password.</td>
+                                                <td valign="top" style="padding:5px;padding-top:20px; font-family: Poppins,sans-serif; font-size: 15px; line-height:20px;"><a href = "http://localhost/pmc-dev/admin/fogot_password.php?mode=update_password&uname='.$username.'&email='.$email.'">Reset Password</a></td>
                                             </tr>
                                         </tbody>
                                     </table>
