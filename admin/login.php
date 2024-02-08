@@ -17,18 +17,18 @@ include "components/header.php";
 
                     <center><h4>Login Form</h4></center>
 
-                    <form class="mt-5" action="controller/controller.login.php?mode=login" method="POST" id="loginForm">       
+                    <form class="mt-5" action="controller/controller.login.php?mode=login" method="post" id="loginForm">       
 
                         <div class="form-group">
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="username" placeholder="" onkeyup="txtvalidator(this)">
+                                <input type="text" class="form-control" name="username" placeholder="">
                                 <label>Type your username here</label>
                             </div>
                         </div>
 
                         <div class="form-group mt-3">
                             <div class="form-floating">
-                                <input type="password" class="form-control" name="password" placeholder="" onkeyup="txtvalidator(this)">
+                                <input type="password" class="form-control" name="password" placeholder="">
                                 <label>Your Password</label>
                             </div>
                         </div>
@@ -58,7 +58,7 @@ include "components/header.php";
                         </center>
 
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="primary_btn" data-bs-dismiss="modal">Okay</button>
+                            <button type="button" class="primary_btn" data-bs-dismiss="modal" id="modal_login_btn">Okay</button>
                         </div>
                     </div>
                 </div>
@@ -67,8 +67,8 @@ include "components/header.php";
 
     </div>
 
-    <script src="assets/js/login.js"></script>
     <?php include "components/footer.php";  ?>
+    <script src="assets/js/login.js"></script>
 </body>
 
 <html>

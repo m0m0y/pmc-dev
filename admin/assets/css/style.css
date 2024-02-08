@@ -216,7 +216,6 @@ button {
   padding: 8%;
   border-width: 1px;
   border-color: #00000070;
-  border-radius: 10px;
 }
 
 .container form .form-control {
@@ -261,7 +260,7 @@ button {
 
 .forgot_container h3 {
   max-width:255px;
-  margin-top:-63px;
+  margin-top: -13%;
   padding-left: 5px;
   padding-right: 5px;
   margin-bottom: 0;
@@ -270,7 +269,7 @@ button {
 }
 
 .update_container h3 {
-  max-width:260px;
+  max-width:263px;
   margin-top:-13%;
   padding-left: 5px;
   padding-right: 5px;
@@ -299,6 +298,10 @@ button {
 
 .forgot_modal .primary_btn:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.update_container #alert_msg {
+  display: none;
 }
 
 
@@ -403,58 +406,196 @@ main {
 
 
 /*--------------------------------------------------------------
-# Register
+# User
 --------------------------------------------------------------*/
-.register_container {
-  background: #f7f7f7;
-  position: absolute;
-  left: 58%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  height: auto;
-  width: 50%;
-  border: 1px solid #cecece;
+.table_container {
+  padding: 70px 10%;
 }
 
-.register_container .register_form {
-  padding: 7%;
+.table_container .table_title {
+  font-weight: 800;
+  margin: 0;
+  display: inline-block;
+  margin-right: auto;
 }
 
-.register_container form .form-control,
-.register_container form .form-select  {
+.table_container .primary_btn {
+  padding: 8px 2%;
+  border: 0;
+  background-color: #11155d;
+  color: white;
+  transition: 0.4s;
+}
+
+.table_container .table .primary_btn:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.table_container .table .primary_btn {
+  padding: 7px 14%;
+  border: 0;
+  background-color: #11155d;
+  color: white;
+  transition: 0.4s;
+}
+
+.table_container .primary_btn:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.table_container .table .danger_btn {
+  padding: 6px 13%;
+  border: 1px solid #dc3545;
+  border-color: #dc3545;
+  background-color: transparent;
+  color: #dc3545;
+  transition: 0.4s;
+}
+
+.table_container .table .danger_btn:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.table_container table tr th {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.register_modal .modal-content,
+.update_modal .modal-content {
+  border-radius: 0px;
+}
+
+.register_modal .primary_btn,
+.update_modal .primary_btn {
+  padding: 8px 2%;
+  border: 0;
+  background-color: #11155d;
+  color: white;
+  transition: 0.4s;
+}
+
+.register_modal .primary_btn:hover,
+.update_modal .primary_btn:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.register_modal .secondary_btn,
+.update_modal .secondary_btn {
+  padding: 7px 2%;
+  border: 1px solid #8ec646;
+  border-color: #8ec646;
+  background-color: transparent;
+  color: #7cba2c;
+  transition: 0.4s;
+}
+
+.register_modal .secondary_btn:hover,
+.update_modal .secondary_btn:hover {
+  background-color: #8ec646;
+  color: white;
+}
+
+.register_modal .modal-header,
+.update_modal .modal-header,
+.register_modal .modal-footer,
+.update_modal .modal-footer {
+  border-bottom: none;
+  border-top: none;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.register_modal .modal-header,
+.update_modal .modal-header {
+  padding-top: 35px;
+  padding-bottom: 10px;
+}
+
+.register_modal .modal-header .modal-title,
+.update_modal .modal-header .modal-title {
+  font-weight: 600;
+  color: #11155d;
+}
+
+.register_modal .btn-close,
+.update_modal .btn-close {
+  box-shadow: none;
+}
+
+.register_modal .modal-body,
+.update_modal .modal-body {
+  padding: 0;
+}
+
+.register_container .register_form,
+.update_user_container .update_form {
+  padding: 25px 5%;
+}
+
+.register_container .form-control,
+.register_container .form-select,
+.update_user_container .form-control,
+.update_user_container .form-select  {
   border-radius: 0px;
   border: 0;
   border-bottom: 1px solid #dee2e6;
   transition: 0.3s;
 }
 
-.register_container form .form-control:focus {
+.register_container .form-control:focus,
+.update_user_container .form-control:focus {
   box-shadow: none;
   border-color: #8ec646;
 }
 
-.register_container form .form-select:focus {
+.register_container .form-select:focus,
+.update_user_container .form-select:focus {
   box-shadow: none;
 }
 
-.register_container form button {
-  padding: 9px 3%;
-  background: #11155d;
-  color: white;
-  border: 0;
-  transition: 0.4s;
+.register_modal .modal-footer,
+.update_modal .modal-footer {
+  padding-top: 0;
+  padding-bottom: 35px;
 }
 
-.register_container form button:hover {
+.delete_modal .modal-content {
+  border-radius: 0px;
+  padding: 5%;
+}
+
+.delete_modal .primary_btn:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
+.delete_modal .primary_btn {
+  padding: 8px 5%;
+  border: 0;
+  background-color: #11155d;
+  color: white;
+  transition: 0.4s;
+}
 
+.delete_modal .danger_btn {
+  padding: 8px 4%;
+  border: 1px solid #dc3545;
+  border-color: #dc3545;
+  background-color: transparent;
+  color: #dc3545;
+  transition: 0.4s;
+}
 
+.delete_modal .danger_btn:hover {
+  background-color: #dc3545;
+  color: white;
+}
 
-
-
-
+.delete_modal .modal-body i {
+  font-size: 55px;
+  color: #c73737;
+}
 
 /*--------------------------------------------------------------
 # Preloader

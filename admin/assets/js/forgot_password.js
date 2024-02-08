@@ -1,81 +1,97 @@
-$(document).ready(function() {
-    if ($("#preloader")) {
-        window.addEventListener("load", () => {
-            $("#preloader").remove();
+let preload = document.querySelector("#preloader");
+window.addEventListener("load", () => {
+    document.getElementById("preloader").remove();
+});
+
+document.querySelector("#resetPassForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+   
+    let messageAlert = document.getElementById("alert_msg");
+   
+    let action = document.getElementById("resetPassForm").getAttribute("action");
+    let method = document.getElementById("resetPassForm").getAttribute("method");
+    let formData = new FormData(document.getElementById("resetPassForm"));
+    let modalFogotBtn = document.getElementById("fogot_modal_btn");
+
+    try {
+        const response = await fetch(action , {
+            method: method,
+            body: formData,
         });
-    }
 
-    $("#alert_msg").css("display", "none");
+        const result = await response.json();
 
-    $("#resetPassForm").on("submit", function(e) {
-        e.preventDefault();
+        if (result.status == 0) {
 
-        let $inputs = $(this).find("input");
-        let action = $(this).attr("action");
-        let type = $(this).attr("method");
-        let formData = new FormData(this);
-
-        if ($("input[name='f_username']").val() == "" || $("input[name='f_email']").val() == "") {
             $(".forgot_modal").modal("show");
-            $(".message_body").text("Please double check the field!");
+            document.querySelector(".message_body").innerText = "Something went wrong!";
             return false;
-        } else if ($("input[name='u_username']").val() == "" || $("input[name='u_password']").val() == "" || $("input[name='u_confirm_password']") == "") {
-            $("#alert_msg").removeClass("success_alert_msg").removeClass("warning_alert_msg").addClass("danger_alert_msg");
-            $(".danger_alert_msg").html("<p class='alert_message'>Please double check the field! <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-            $(".btn-close").click(function() {
-                $(".danger_alert_msg").fadeOut("slow");
-            });
+
+        } else if(result.status == 3) {
+
+            $(".forgot_modal").modal("show");
+            document.querySelector(".message_body").innerText = "You submit empty field, please check the field before submitting";
             return false;
-        }
 
-        if($("input[name='u_password']").val() != $("input[name='u_confirm_password']").val()) {
-            $("#alert_msg").removeClass("success_alert_msg").removeClass("warning_alert_msg").addClass("danger_alert_msg");
-            $(".danger_alert_msg").html("<p class='alert_message'>Password did not match <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-            $(".btn-close").click(function() {
-                $(".danger_alert_msg").fadeOut("slow");
-            });
+        } else if(result.status == 2) {
+
+            $(".forgot_modal").modal("show");
+            document.querySelector(".message_body").innerText = "Invalid Account!";
             return false;
-        }
 
-        $.ajax({
-            url: action,
-            method: type,
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(res) {
-                let res_value = jQuery.parseJSON(res);
+        } else if(result.status == 4) {
 
-                switch (res_value["status"]) {
-                    case 0:
-                        $(".forgot_modal").modal("show");
-                        $(".message_body").text("Email did not sent, something went wrong!");
-                        break;
-                    case 1: 
-                        $(".forgot_modal").modal("show");
-                        $(".message_body").text("Please check your email!");
-                        $inputs.val("");
-                        break;
-                    case 2:
-                        $(".forgot_modal").modal("show");
-                        $(".message_body").text("Invalid Account!");
-                        break;
-                    case 3:
-                        $("#alert_msg").removeClass("danger_alert_msg").removeClass("warning_alert_msg").addClass("success_alert_msg");
-                        $(".success_alert_msg").html("<p class='alert_message'>Updated successfully <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-                        
-                        setTimeout(function() { window.location.href="login.php"; }, 2500);
-                        $inputs.val("");
-                        break;
-                    case 4:
-                        $("#alert_msg").removeClass("danger_alert_msg").removeClass("success_alert_msg").addClass("warning_alert_msg");
-                        $(".warning_alert_msg").html("<p class='alert_message'>Invalid Account! <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-                        break;
-                    default:
-                        alert("Something wrong!");
-                }
-                
+            messageAlert.style.display = "block";
+            messageAlert.classList.remove("warning_alert_msg", "success_alert_msg");
+            messageAlert.classList.add("danger_alert_msg");
+            $("#alert_msg").html("<p class='alert_message'>Invalid Account! <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
+            document.querySelector(".btn-close").onclick = () => {
+                $("#alert_msg").fadeOut("slow");
             }
-        });
-    });
+            return false;
+             
+        } else if(result.status == 5) {
+
+            messageAlert.style.display = "block";
+            messageAlert.classList.remove("warning_alert_msg", "danger_alert_msg");
+            messageAlert.classList.add("success_alert_msg");
+            $("#alert_msg").html("<p class='alert_message'>Your password is already update! <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
+            document.querySelector(".btn-close").onclick = () => {
+                $("#alert_msg").fadeOut("slow");
+            }
+            return false;
+
+        } else if(result.status == 6) {
+
+            messageAlert.style.display = "block";
+            messageAlert.classList.remove("danger_alert_msg", "success_alert_msg");
+            messageAlert.classList.add("warning_alert_msg");
+            $("#alert_msg").html("<p class='alert_message'>Please double check the field! <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
+            document.querySelector(".btn-close").onclick = () => {
+                $("#alert_msg").fadeOut("slow");
+            }
+            return false;
+
+        } else if(result.status == 7) {
+
+            messageAlert.style.display = "block";
+            messageAlert.classList.remove("danger_alert_msg", "success_alert_msg");
+            messageAlert.classList.add("warning_alert_msg");
+            $("#alert_msg").html("<p class='alert_message'>Password did not match <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
+            document.querySelector(".btn-close").onclick = () => {
+                $("#alert_msg").fadeOut("slow");
+            }
+            return false;
+
+        }
+
+
+        $(".forgot_modal").modal("show");
+        document.querySelector(".message_body").innerText = "We have sent you a link to your email";
+        return false;
+
+    } 
+    catch (e) {
+        console.error(e.message);
+    }
 });

@@ -36,8 +36,8 @@ switch($mode) {
             $mail->Username = "progressivemedicalcorpo@gmail.com";
             $mail->Password = "yugadyzuxpfypbgd";
             $mail->setFrom("cleanspace@pmc.ph", "no-reply");
-            // $mail->addAddress("rivera.jerome.dc.1525@gmail.com", "PMC");
-            $mail->addAddress($email);
+            $mail->addAddress("rivera.jerome.dc.1525@gmail.com", "PMC");
+            // $mail->addAddress($email);
             $mail->Subject = "Reset Password";
             $mail->Body = $mailBodyTemplate;
             $mail->isHTML(true);
@@ -47,6 +47,9 @@ switch($mode) {
             } else {
                 $response = array("status" => 1);
             }
+
+        } else {
+            $response = array("status" => 3);
         }
 
         break;
@@ -56,6 +59,7 @@ switch($mode) {
         $password = $_POST["u_password"];
         $confirm_password = $_POST["u_confirm_password"];
         $email = $_POST["email"];
+
         $checkUser = $modelResetPass->checkUser($username, $email);
 
         if(!empty($username) || !empty($password) || !empty($confirm_password)) {
@@ -66,14 +70,24 @@ switch($mode) {
                 exit;
             }
 
+            if($password != $confirm_password) {
+                $response = array("status" => 7);
+                echo json_encode($response);
+                exit;
+            }
+
             $modelResetPass->updatePassword($username, $password, $email);
-            $response = array("status" => 3);
+            $response = array("status" => 5);
+
+        } else {
+            $response = array("status" => 6);
         }
 
         break;
+
     default:
         echo "404 not found";
         exit;
 }
-
 echo json_encode($response);
+?>

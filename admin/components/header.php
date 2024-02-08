@@ -19,7 +19,9 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="assets/vendor/jquery/jquery.js"></script>
+  <link href="assets/vendor/datatable/datatable.min.css" rel="stylesheet">
+  <link href="assets/vendor/datatable/datatable.bootstrap5.min.css" rel="stylesheet">
 
   <link href="assets/css/style.css" rel="stylesheet">
 

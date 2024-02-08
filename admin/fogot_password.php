@@ -79,7 +79,7 @@ include 'components/header.php';
 
                         <input type="email" name="email" value="<?= $email ?>" style="display: none;" readonly>
 
-                        <div class="danger_alert_msg mt-4" id="alert_msg"></div>
+                        <div class="mt-4" id="alert_msg"></div>
 
                         <div class="mt-4">
                             <button type="submit" class="primary_btn me-2"><i class="bi bi-arrow-clockwise me-1"></i>Update</button>
@@ -103,7 +103,7 @@ include 'components/header.php';
                         </center>
 
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="primary_btn" data-bs-dismiss="modal">Okay</button>
+                            <button type="button" class="primary_btn" data-bs-dismiss="modal" id="fogot_modal_btn">Okay</button>
                         </div>
                     </div>
                 </div>
@@ -112,8 +112,8 @@ include 'components/header.php';
 
     </div>
 
-    <script src="assets/js/forgot_password.js"></script>
     <?php include "components/footer.php"; ?>
+    <script src="assets/js/forgot_password.js"></script>
 
 </body>
 
