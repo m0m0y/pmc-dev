@@ -16,7 +16,7 @@ switch($mode) {
         $users = $modelLogin->loginUser($username, $password); 
 
         if(!$users) {
-            $response = array("status" => 0);
+            $response = array("message" => "Sorry, you input a invalid accout. Please try again.", "status" => 0);
             echo json_encode($response);
             exit;
         }
@@ -25,7 +25,7 @@ switch($mode) {
         $_SESSION["name"] = $users[1];
         $_SESSION["type"] = $users[4];
 
-        $response = array("status" => 1);
+        $response = array("message" => "You are successfully logged in!", "status" => 1);
         break;
 
     default:

@@ -37,15 +37,15 @@ switch($mode) {
 
         if (!empty($email) && !empty($username) && !empty($password) && !empty($confirm_password)) {
             if($password != $confirm_password) {
-                $response = array("message" => "Password not match");
+                $response = array("message" => "Password is not match!", "status" => 0);
                 echo json_encode($response);
                 exit;
             } 
 
             $userRegistration = $modelUsers->addUser($email, $username, $password, $status, $type);
-            $response = array("message" => "Successfully Register!");
+            $response = array("message" => "You successfully add new account.", "status" => 1);
         } else {
-            $response = array("message" => "Empty Field");
+            $response = array("message" => "Please fill up the required field!", "status" => 2);
         }
         break;
     
@@ -59,16 +59,16 @@ switch($mode) {
 
         if (!empty($email) && !empty($username) && !empty($password)) {
             $modelUsers->updateUser($id, $email, $username, $password, $status, $user_type);
-            $response = array("message" => "Update Successfully");
+            $response = array("message" => "The account was successfully updated.", "status" => 1);
         } else {
-            $response = array("message" => "Empty Field");
+            $response = array("message" => "Please fill up the required field!", "status" => 0);
         }
         break;
 
     case "deleteUsers";
         $id = $_GET["id"];
         $modelUsers->deleteUsers($id);
-        $response = array("message" => "Delete Successfully");
+        $response = array("message" => "User was successfully deleted!", "status" => 1);
         break;
 
     default:

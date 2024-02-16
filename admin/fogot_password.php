@@ -48,7 +48,7 @@ include 'components/header.php';
         <?php } else if($_GET["mode"] == "update_password") { 
             $email = $_GET["email"];
             ?>
-            <div class="update_container">
+            <div class="resset_container">
 
                 <div class="form_border">
 

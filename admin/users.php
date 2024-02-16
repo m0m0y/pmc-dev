@@ -50,17 +50,17 @@ include "components/header.php";
     </main>
 
     <form action="controller/controller.users.php?mode=addUsers" method="post" id="addUserForm">
-        <div class="modal fade register_modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade add_modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5"><i class="bi bi-person-fill-add" style="color: #;"></i> Add New <span style="color: #8ec646;"> User </span> </h1>
+                        <h1 class="modal-title fs-5"><i class="bi bi-person-fill-add"></i> Add New <span style="color: #8ec646;"> User </span> </h1>
                     </div>
 
                     <div class="modal-body">
-                        <div class="register_container">
-                            <div class="register_form">
+                        <div class="add_container">
+                            <div class="add_form">
 
                                 <div class="mb-3" id="modal_add_alert_msg"></div>
 
@@ -136,7 +136,7 @@ include "components/header.php";
                     </div>
 
                     <div class="modal-body">
-                        <div class="update_user_container">
+                        <div class="update_container">
                             <div class="update_form">
 
                                 <div class="mb-3" id="modal_update_alert_msg"></div>
@@ -218,7 +218,8 @@ include "components/header.php";
 
     <?php include "components/logout_modal.php";  ?>
     <?php include "components/footer.php";  ?>
-
+    <script src="assets/js/users.js"></script>
+    
 </body>
 
 </html>

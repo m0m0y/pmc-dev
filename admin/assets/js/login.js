@@ -25,7 +25,7 @@ document.querySelector("#loginForm").addEventListener("submit", async (e) => {
 
         if (result.status == 0) {
             $(".login_modal").modal("show");
-            document.querySelector(".message_body").innerText = "Invalid Account!";
+            document.querySelector(".message_body").innerText = result.message;
 
             modalLoginBtn.onclick = () => {
                 fieldEnable(inputs);
@@ -35,7 +35,7 @@ document.querySelector("#loginForm").addEventListener("submit", async (e) => {
         }
 
         $(".login_modal").modal("show");
-        document.querySelector(".message_body").innerText = "Successfully Login In!";
+        document.querySelector(".message_body").innerText = result.message;
         modalLoginBtn.innerText = "Proceed";
 
         modalLoginBtn.onclick = () => {

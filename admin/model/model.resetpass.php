@@ -7,7 +7,7 @@ class ModelResetPassword extends db_conn_mysql {
     }
 
     public function checkUser($username, $email) {
-        $query = $this->conn->prepare("SELECT username, email FROM users WHERE username = ? AND email = ? AND status = 0");
+        $query = $this->conn->prepare("SELECT username, email FROM users WHERE username = ? AND email = ? AND status = 1");
         $query->execute([$username, $email]);
         $response = $query->fetch();
 

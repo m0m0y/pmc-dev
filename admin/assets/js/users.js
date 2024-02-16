@@ -27,7 +27,7 @@ function loadTable() {
 }
 
 function addUserModal() {
-    $(".register_modal").modal("show");
+    $(".add_modal").modal("show");
 
     document.getElementById("modal_add_close_btn").onclick = () => {
         let addModalMessageAlert = document.getElementById("modal_add_alert_msg");
@@ -42,8 +42,6 @@ function addUserModal() {
         e.preventDefault();
 
         let addModalMessageAlert = document.getElementById("modal_add_alert_msg");
-        let inputValue = document.getElementById("addUserForm").getElementsByTagName("input");
-        let selectValue = document.getElementById("addUserForm").getElementsByTagName("select");
 
         let action = document.getElementById("addUserForm").getAttribute("action");
         let method = document.getElementById("addUserForm").getAttribute("method");
@@ -56,44 +54,34 @@ function addUserModal() {
             });
             const result = await response.json();
 
-            if (result.message == "Empty Field") {
-                
-                addModalMessageAlert.style.display = "block";
-                addModalMessageAlert.classList.remove("warning_alert_msg", "success_alert_msg");
-                addModalMessageAlert.classList.add("danger_alert_msg");
-                $("#modal_add_alert_msg").html("<p class='alert_message'>Please double check the fields <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
+            if(result.status <= 2) {
+                $("#modal_add_alert_msg").html("<p class='alert_message'>"+ result.message +"<button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
                 document.querySelector(".btn-close").onclick = () => {
                     $("#modal_add_alert_msg").fadeOut("slow");
-                }                        
-                return false;
+                }       
+            }
 
-            } else if (result.message == "Password not match") {
-
-                addModalMessageAlert.style.display = "block";
+            if(result.status == 0) {
                 addModalMessageAlert.classList.remove("danger_alert_msg", "success_alert_msg");
                 addModalMessageAlert.classList.add("warning_alert_msg");
-                $("#modal_add_alert_msg").html("<p class='alert_message'>Password did not match! <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-                document.querySelector(".btn-close").onclick = () => {
-                    $("#modal_add_alert_msg").fadeOut("slow");
-                }
-                return false;
-
+                return;
             }
 
-            addModalMessageAlert.style.display = "block";
-            addModalMessageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
-            addModalMessageAlert.classList.add("success_alert_msg");
-            $("#modal_add_alert_msg").html("<p class='alert_message'>You successfully add the user <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-            document.querySelector(".btn-close").onclick = () => { 
-                $("#modal_add_alert_msg").fadeOut("slow");
+            if(result.status == 1) {
+                addModalMessageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
+                addModalMessageAlert.classList.add("success_alert_msg");
+
+                document.getElementById("addUserForm").reset();
+                $('#userData').DataTable().destroy();
+                loadTable();
+                return;
             }
 
-            document.getElementById("addUserForm").reset();
-            $('#userData').DataTable().destroy();
-
-            loadTable();
-
-            return false;
+            if(result.status == 2) {
+                addModalMessageAlert.classList.remove("warning_alert_msg", "success_alert_msg");
+                addModalMessageAlert.classList.add("danger_alert_msg");
+                return;
+            }
 
         }
         catch(e) {
@@ -141,34 +129,27 @@ function updateUserModal(id, username, password, email, userType, status) {
             });
             const result = await response.json();
 
-            console.log(result);
-
-            if (result.message == "Empty Field") {
-
-                updateModalMessageAlert.style.display = "block";
-                updateModalMessageAlert.classList.remove("warning_alert_msg", "success_alert_msg");
-                updateModalMessageAlert.classList.add("danger_alert_msg");
-                $("#modal_update_alert_msg").html("<p class='alert_message'>Please double check the fields <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-                document.querySelector(".btn-close").onclick = () => {
+            if(result.status <= 1) {
+                $("#modal_update_alert_msg").html("<p class='alert_message'>"+ result.message +"<button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
+                document.querySelector(".btn-close").onclick = () => { 
                     $("#modal_update_alert_msg").fadeOut("slow");
                 }
-                return false;
-
-            } 
-
-            updateModalMessageAlert.style.display = "block";
-            updateModalMessageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
-            updateModalMessageAlert.classList.add("success_alert_msg");
-            $("#modal_update_alert_msg").html("<p class='alert_message'>Update Successfully! <button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-            document.querySelector(".btn-close").onclick = () => { 
-                $("#modal_update_alert_msg").fadeOut("slow");
             }
 
-            $('#userData').DataTable().destroy();
-            loadTable();
+            if(result.status == 0) {
+                updateModalMessageAlert.classList.remove("warning_alert_msg", "success_alert_msg");
+                updateModalMessageAlert.classList.add("danger_alert_msg");
+                return;
+            }
 
-            return false;
+            if(result.status == 1) {
+                updateModalMessageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
+                updateModalMessageAlert.classList.add("success_alert_msg");
 
+                $('#userData').DataTable().destroy();
+                loadTable();
+                return;
+            }
         }
         catch(e) {
             console.error(e.message);
@@ -190,13 +171,12 @@ function deleteUser(id) {
                 }
             );
             const result = await response.json();
-
-            if(result.message == "Delete Successfully") {
+            
+            if(result.status == 1) {
                 $('.delete_modal').modal('hide');
                 $('#userData').DataTable().destroy();
                 loadTable();
             }
-            return false;
 
         }   
         catch(e) {

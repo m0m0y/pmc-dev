@@ -81,6 +81,11 @@ button {
   color: #664d03;
 }
 
+#modal_add_alert_msg,
+#modal_update_alert_msg {
+  display: none;
+}
+
 /*--------------------------------------------------------------
 # Login Page
 --------------------------------------------------------------*/
@@ -247,7 +252,7 @@ button {
   background: #0288d1;
 }
 
-.forgot_container, .update_container {
+.forgot_container, .resset_container {
   background: white;
   position: absolute;
   left: 50%;
@@ -268,7 +273,7 @@ button {
   font-weight: 700;
 }
 
-.update_container h3 {
+.resset_container h3 {
   max-width:263px;
   margin-top:-13%;
   padding-left: 5px;
@@ -300,7 +305,7 @@ button {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.update_container #alert_msg {
+.resset_container #alert_msg {
   display: none;
 }
 
@@ -462,13 +467,13 @@ main {
   font-weight: 600;
 }
 
-.register_modal .modal-content,
-.update_modal .modal-content {
+#addUserForm .add_modal .modal-content,
+#updateUserForm .update_modal .modal-content {
   border-radius: 0px;
 }
 
-.register_modal .primary_btn,
-.update_modal .primary_btn {
+#addUserForm .add_modal .primary_btn,
+#updateUserForm .update_modal .primary_btn {
   padding: 8px 2%;
   border: 0;
   background-color: #11155d;
@@ -476,13 +481,13 @@ main {
   transition: 0.4s;
 }
 
-.register_modal .primary_btn:hover,
-.update_modal .primary_btn:hover {
+#addUserForm .add_modal .primary_btn:hover,
+#updateUserForm .update_modal .primary_btn:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.register_modal .secondary_btn,
-.update_modal .secondary_btn {
+#addUserForm .add_modal .secondary_btn,
+#updateUserForm .update_modal .secondary_btn {
   padding: 7px 2%;
   border: 1px solid #8ec646;
   border-color: #8ec646;
@@ -491,75 +496,77 @@ main {
   transition: 0.4s;
 }
 
-.register_modal .secondary_btn:hover,
-.update_modal .secondary_btn:hover {
+#addUserForm .add_modal .secondary_btn:hover,
+#updateUserForm .update_modal .secondary_btn:hover {
   background-color: #8ec646;
   color: white;
 }
 
-.register_modal .modal-header,
-.update_modal .modal-header,
-.register_modal .modal-footer,
-.update_modal .modal-footer {
+#addUserForm .add_modal .modal-header,
+#updateUserForm .update_modal .modal-header,
+#addUserForm .add_modal .modal-footer,
+#updateUserForm .update_modal .modal-footer {
   border-bottom: none;
   border-top: none;
   padding-left: 5%;
   padding-right: 5%;
+  padding-top: 0;
+  padding-bottom: 35px;
 }
 
-.register_modal .modal-header,
-.update_modal .modal-header {
+#addUserForm .add_modal .modal-header,
+#updateUserForm .update_modal .modal-header {
   padding-top: 35px;
   padding-bottom: 10px;
 }
 
-.register_modal .modal-header .modal-title,
-.update_modal .modal-header .modal-title {
+#addUserForm .add_modal .modal-header .modal-title,
+#updateUserForm .update_modal .modal-header .modal-title {
   font-weight: 600;
   color: #11155d;
 }
 
-.register_modal .btn-close,
-.update_modal .btn-close {
+#addUserForm .add_modal .btn-close,
+#updateUserForm .update_modal .btn-close {
   box-shadow: none;
 }
 
-.register_modal .modal-body,
-.update_modal .modal-body {
+#addUserForm .add_modal .modal-body,
+#updateUserForm .update_modal .modal-body {
   padding: 0;
 }
 
-.register_container .register_form,
-.update_user_container .update_form {
+#addUserForm .add_container .add_form,
+#updateUserForm .update_container .update_form {
   padding: 25px 5%;
 }
 
-.register_container .form-control,
-.register_container .form-select,
-.update_user_container .form-control,
-.update_user_container .form-select  {
+#addUserForm .add_container .form-control,
+#addUserForm .add_container .form-select,
+#updateUserForm .update_container .form-control,
+#updateUserForm .update_container .form-select  {
   border-radius: 0px;
   border: 0;
   border-bottom: 1px solid #dee2e6;
   transition: 0.3s;
 }
 
-.register_container .form-control:focus,
-.update_user_container .form-control:focus {
+#addUserForm .add_container .form-control:focus,
+#updateUserForm .update_container .form-control:focus {
   box-shadow: none;
   border-color: #8ec646;
 }
 
-.register_container .form-select:focus,
-.update_user_container .form-select:focus {
+#addUserForm .add_container .form-select:focus,
+#updateUserForm .update_container .form-select:focus {
   box-shadow: none;
 }
 
-.register_modal .modal-footer,
-.update_modal .modal-footer {
+/* #addUserForm .add_modal .modal-footer,
+#updateUserForm .update_modal .modal-footer {
   padding-top: 0;
   padding-bottom: 35px;
-}
+} */
 
 .delete_modal .modal-content {
   border-radius: 0px;
