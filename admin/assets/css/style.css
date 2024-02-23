@@ -81,9 +81,24 @@ button {
   color: #664d03;
 }
 
-#modal_add_alert_msg,
-#modal_update_alert_msg {
+#modal_add_alert_msg {
   display: none;
+}
+
+.badge {
+  font-size: 11px;
+  border-radius: 0px;
+  font-weight: normal;
+}
+
+.badge-primary {
+  background-color: #11155d;
+  color: white;
+}
+
+.badge-warning {
+  background-color: #ffc107;
+  color: #2b0000;
 }
 
 /*--------------------------------------------------------------
@@ -603,6 +618,228 @@ main {
   font-size: 55px;
   color: #c73737;
 }
+
+
+/*--------------------------------------------------------------
+# Career's
+--------------------------------------------------------------*/
+
+.card_container {
+  padding: 70px 10%;
+}
+
+.card_container .card {
+  border-radius: 0px;
+}
+
+.card_container .card .card-body {
+  padding: 5%;
+  padding-top: 15px;
+}
+
+.card_container .card .mail-to {
+  padding: 5px 5%;
+  font-size: 14px;
+}
+
+.card_container .card .mail-to a {
+  text-decoration: underline;
+}
+
+.card_container .card .card-footer small {
+  font-size: 12px;
+  color: #6bb30f;
+}
+
+.card_container .iconplus_container {
+  text-align: center;
+  padding-top: 35px; 
+  padding-bottom: 35px;
+}
+
+.card_container .card-dashed {
+  border: 2px dashed; 
+  border-color: rgb(0 0 0 / 17%);
+}
+
+.card_container .iconplus_container i {
+  font-size: 100px; 
+  color: rgb(0 0 0 / 20%);
+}
+
+.card_container .update_textlink_container {
+  text-align: center; 
+  padding: 0px; 
+  border-right: 1px solid #bcbcbc;
+}
+
+.card_container .delete_textlink_container {
+  text-align: center; 
+  padding: 0px;
+}
+
+.card_container .update_textlink_container .update_textlink {
+  text-decoration: none;
+  color: #198754;
+  font-family: "Poppins", sans-serif;
+  transition: 0.4s;
+  font-size: 14px;
+}
+
+
+.card_container .update_textlink_container .update_textlink:hover {
+  color: #17583a;
+  text-decoration: none;
+}
+
+
+.card_container .delete_textlink_container .delete_textlink {
+  text-decoration: none;
+  color: #dc3545;
+  font-family: "Poppins", sans-serif;
+  transition: 0.4s;
+  font-size: 14px;
+}
+
+
+.card_container .delete_textlink_container .delete_textlink:hover {
+  color: #a01926;
+  text-decoration: none;
+}
+
+
+#addCareers {
+  cursor: pointer;
+}
+
+#careersForm .careers_modal .modal-content {
+  border-radius: 0px !important;
+}
+
+#careersForm .careers_modal .modal-body {
+  padding: 0;
+  border-radius: 0;
+}
+
+#careersForm .careers_modal .primary_btn {
+  padding: 8px 2%;
+  border: 0;
+  background-color: #11155d;
+  color: white;
+  transition: 0.4s;
+}
+
+#careersForm .careers_modal .primary_btn:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#careersForm .careers_modal .secondary_btn {
+  padding: 7px 2%;
+  border: 1px solid #8ec646;
+  border-color: #8ec646;
+  background-color: transparent;
+  color: #7cba2c;
+  transition: 0.4s;
+}
+
+#careersForm .careers_modal .secondary_btn:hover {
+  background-color: #8ec646;
+  color: white;
+}
+
+
+#careersForm .careers_modal .modal-header,
+#careersForm .careers_modal .modal-footer {
+  border-bottom: none;
+  border-top: none;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 0;
+  padding-bottom: 35px;
+}
+
+#careersForm .careers_modal .modal-header {
+  padding-top: 35px;
+  padding-bottom: 10px;
+}
+
+#careersForm .careers_modal .modal-header .modal-title {
+  font-weight: 600;
+  color: #11155d;
+}
+
+#careersForm .careers_modal .btn-close {
+  box-shadow: none;
+}
+
+#careersForm .careers_container {
+  padding: 25px 5%;
+}
+
+#careersForm .careers_container #careersAlertMsg {
+  display: none;
+}
+
+#careersForm .careers_container .form-control,
+#careersForm .careers_container .form-select  {
+  border-radius: 0px;
+  border: 0;
+  border-bottom: 1px solid #dee2e6;
+  transition: 0.3s;
+}
+
+#careersForm .careers_container .form-control:focus {
+  box-shadow: none;
+  border-color: #8ec646;
+}
+
+#careersForm .careers_container .form-select:focus {
+  box-shadow: none;
+}
+
+#careersForm .careers_container .upload_file {
+  border: 2px dashed;
+  border-color: rgb(0 0 0 / 17%);
+  text-align: center;
+  cursor: pointer;
+  padding-top: 33px; 
+  padding-bottom: 33px;
+  background-color: #ebebeb;
+  width:100%;
+  height:147px;
+  overflow:hidden;
+  position:relative;
+}
+
+#careersForm .careers_container .upload_file #thumbnailImg {
+  opacity: 0.35;
+}
+
+#careersForm .careers_container .upload_file #displayImg {
+  display: none;
+  position: absolute;
+  max-width: 100%; 
+  max-height: 250px
+}
+
+#careersForm .modal-body .ck-editor__editable {
+  min-height: 200px;
+}
+
+#careersForm .modal-body .invalid-message{
+  margin: 0;
+  font-size: 13px;
+  color: red;
+}
+
+#careersForm .modal-body .image-note {
+  font-size: 13px;
+  text-align: center;
+  margin: 0;
+  color: #a5a9ad;
+  margin-top: 4px;
+}
+
 
 /*--------------------------------------------------------------
 # Preloader

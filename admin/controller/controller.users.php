@@ -7,7 +7,7 @@ $modelUsers = new ModelUsers();
 $mode = isset($_GET["mode"]) ? $_GET["mode"] : NULL;
 
 switch($mode) {
-    case "getUsers";
+    case "getUsers":
         $getUsers = $modelUsers->getUsers();
         $s = "";
         foreach ($getUsers as $k => $v) {
@@ -27,7 +27,7 @@ switch($mode) {
         $response = array("userData" => $getUsers);
         break;
 
-    case "addUsers";
+    case "addUsers":
         $email = $_POST["email"];
         $username = $_POST["username"];
         $password = $_POST["password"];
@@ -49,7 +49,7 @@ switch($mode) {
         }
         break;
     
-    case "updateUsers";
+    case "updateUsers":
         $id = $_POST["id"];
         $email = $_POST["email"];
         $username = $_POST["username"];
@@ -65,7 +65,7 @@ switch($mode) {
         }
         break;
 
-    case "deleteUsers";
+    case "deleteUsers":
         $id = $_GET["id"];
         $modelUsers->deleteUsers($id);
         $response = array("message" => "User was successfully deleted!", "status" => 1);

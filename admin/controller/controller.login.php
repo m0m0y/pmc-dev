@@ -9,7 +9,7 @@ $auth = new Auth();
 $mode = isset($_GET["mode"]) ? $_GET["mode"] : NULL;
 
 switch($mode) {
-    case "login";
+    case "login":
         error_reporting(E_ALL);
         $username = $_POST["username"];
         $password = $_POST["password"];

@@ -11,7 +11,7 @@ $modelResetPass = new ModelResetPassword();
 $mode = isset($_GET["mode"]) ? $_GET["mode"] : NULL;
 
 switch($mode) {
-    case "forgotPassword";
+    case "forgotPassword":
         $username = $_POST["f_username"];
         $email = $_POST["f_email"];
 
@@ -54,7 +54,7 @@ switch($mode) {
 
         break;
 
-    case "updatePassword";
+    case "updatePassword":
         $username = $_POST["u_username"];
         $password = $_POST["u_password"];
         $confirm_password = $_POST["u_confirm_password"];
