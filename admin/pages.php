@@ -161,54 +161,55 @@ include "components/header.php";
             </table>
 
         </div>
-    </main>
+        
+        <div class="modal fade addpages_modal" id="staticBackdrop" data-bs-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <center><h5 class="modal-title">Add new page's</h5></center>
+                    </div>
+                    <div class="modal-body">
 
-    <div class="modal fade addpages_modal" id="staticBackdrop" data-bs-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <center><h5 class="modal-title">Add new page's</h5></center>
-                </div>
-                <div class="modal-body">
+                        <form action="" method="post" id="addPagesForm">
 
-                    <form action="" method="post" id="addPagesForm">
-
-                        <div class="mb-3">
-                            <label class="form-label">Page Name:</label>
-                            <input type="text" class="form-control" placeholder="Page title">
-                            <p class="invalid-message" id="p_name_err"></p>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Page Link:</label>
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon3">https://example.com/</span>
-                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-                                <p class="invalid-message" id="p_link_err"></p>
+                            <div class="mb-3">
+                                <label class="form-label">Page Name:</label>
+                                <input type="text" class="form-control" placeholder="Page title">
+                                <p class="invalid-message" id="p_name_err"></p>
                             </div>
-                        </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Status:</label>
-                            <select class="form-select" name="status">
-                                <option value="0">Disabled</option>
-                                <option value="1">Active</option>
-                            </select>
-                        </div>
+                            <div class="mb-3">
+                                <label class="form-label">Page Link:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon3">https://example.com/</span>
+                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                                    <p class="invalid-message" id="p_link_err"></p>
+                                </div>
+                            </div>
 
-                        <div class="d-flex justify-content-end mt-4">
-                            <button type="button" class="danger_btn me-1" data-bs-dismiss="modal">Discard</button>
-                            <button type="submit" class="primary_btn"><i class="bi bi-floppy-fill"></i></button>
-                        </div>
+                            <div class="mb-3">
+                                <label class="form-label">Status:</label>
+                                <select class="form-select" name="status">
+                                    <option value="0">Disabled</option>
+                                    <option value="1">Active</option>
+                                </select>
+                            </div>
 
-                    </form>
+                            <div class="d-flex justify-content-end mt-4">
+                                <button type="button" class="danger_btn me-1" data-bs-dismiss="modal">Discard</button>
+                                <button type="submit" class="primary_btn"><i class="bi bi-floppy-fill"></i></button>
+                            </div>
 
-            
+                        </form>
+
+                
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
+        
+    </main>
+
 
     <?php include "components/logout_modal.php"; ?>
     

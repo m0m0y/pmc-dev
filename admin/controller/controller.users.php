@@ -8,23 +8,23 @@ $mode = isset($_GET["mode"]) ? $_GET["mode"] : NULL;
 
 switch($mode) {
     case "getUsers":
-        $getUsers = $modelUsers->getUsers();
+        $getUser = $modelUsers->getUsers();
         $s = "";
-        foreach ($getUsers as $k => $v) {
-            $getUsers[$k]["row"] = $k+1;
-            $getUsers[$k]["username"] = $v["username"];
-            $getUsers[$k]["password"] = str_pad($s,strlen($v["password"]),"*");
-            $getUsers[$k]["email"] = $v["email"];
-            $getUsers[$k]["user_type"] = $v["user_type"];
-            $getUsers[$k]["status"] = $v["status"] = ($v["status"] = 1) ? "Enabled" : "Disabled";
-            $getUsers[$k]["action"] = "
+        foreach ($getUser as $k => $v) {
+            $getUser[$k]["row"] = $k+1;
+            $getUser[$k]["username"] = $v["username"];
+            $getUser[$k]["password"] = str_pad($s,strlen($v["password"]),"*");
+            $getUser[$k]["email"] = $v["email"];
+            $getUser[$k]["user_type"] = $v["user_type"];
+            $getUser[$k]["status"] = $v["status"] = ($v["status"] = 1) ? "Enabled" : "Disabled";
+            $getUser[$k]["action"] = "
             <center>
                 <button type='button' class='primary_btn' onclick='updateUserModal(\"". $v['id'] ."\", \"". $v['username'] ."\", \"". $v['password'] ."\", \"". $v['email'] ."\", \"". $v['user_type'] ."\", \"". $v['status'] ."\")'><i class='bi bi-pencil-square'></i></button>
                 <button type='button' class='danger_btn' onclick='deleteUser(\"". $v['id'] ."\")'><i class='bi bi-trash-fill'></i></button>
             </center>
             ";
         }
-        $response = array("userData" => $getUsers);
+        $response = array("userData" => $getUser);
         break;
 
     case "addUsers":

@@ -1,4 +1,3 @@
-let preload = document.querySelector("#preloader");
 window.addEventListener("load", () => {
     document.getElementById("preloader").remove();
 });

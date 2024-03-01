@@ -23,7 +23,7 @@
   <link href="assets/vendor/datatable/datatable.min.css" rel="stylesheet">
   <link href="assets/vendor/datatable/datatable.bootstrap5.min.css" rel="stylesheet">
 
-  <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
 
   <link href="assets/css/style.css" rel="stylesheet">
 

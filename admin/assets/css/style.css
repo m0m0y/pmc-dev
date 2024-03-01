@@ -33,6 +33,7 @@ button {
   font-size: 14px;
 }
 
+
 .danger_alert_msg {
   background-color: #f8d7da;
   padding: 2%;
@@ -99,6 +100,78 @@ button {
 .badge-warning {
   background-color: #ffc107;
   color: #2b0000;
+}
+
+
+/*--------------------------------------------------------------
+# Message Alert
+--------------------------------------------------------------*/
+#messageAlert {
+  display: none;
+}
+
+.invalid-message{
+  margin: 0;
+  font-size: 13px;
+  color: red;
+}
+
+/*--------------------------------------------------------------
+# Table container
+--------------------------------------------------------------*/
+
+.table_container {
+  padding: 70px 10%;
+}
+
+.table_container .table_title {
+  font-weight: 800;
+  margin: 0;
+  display: inline-block;
+  margin-right: auto;
+}
+
+.table_container .primary_btn {
+  padding: 8px 2%;
+  border: 0;
+  background-color: #11155d;
+  color: white;
+  transition: 0.4s;
+}
+
+.table_container .table .primary_btn:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.table_container .table .primary_btn {
+  padding: 7px 14%;
+  border: 0;
+  background-color: #11155d;
+  color: white;
+  transition: 0.4s;
+}
+
+.table_container .primary_btn:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.table_container .table .danger_btn {
+  padding: 6px 13%;
+  border: 1px solid #dc3545;
+  border-color: #dc3545;
+  background-color: transparent;
+  color: #dc3545;
+  transition: 0.4s;
+}
+
+.table_container .table .danger_btn:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.table_container table tr th {
+  font-size: 15px;
+  font-weight: 600;
 }
 
 /*--------------------------------------------------------------
@@ -428,60 +501,6 @@ main {
 /*--------------------------------------------------------------
 # User
 --------------------------------------------------------------*/
-.table_container {
-  padding: 70px 10%;
-}
-
-.table_container .table_title {
-  font-weight: 800;
-  margin: 0;
-  display: inline-block;
-  margin-right: auto;
-}
-
-.table_container .primary_btn {
-  padding: 8px 2%;
-  border: 0;
-  background-color: #11155d;
-  color: white;
-  transition: 0.4s;
-}
-
-.table_container .table .primary_btn:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-.table_container .table .primary_btn {
-  padding: 7px 14%;
-  border: 0;
-  background-color: #11155d;
-  color: white;
-  transition: 0.4s;
-}
-
-.table_container .primary_btn:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-.table_container .table .danger_btn {
-  padding: 6px 13%;
-  border: 1px solid #dc3545;
-  border-color: #dc3545;
-  background-color: transparent;
-  color: #dc3545;
-  transition: 0.4s;
-}
-
-.table_container .table .danger_btn:hover {
-  background-color: #dc3545;
-  color: white;
-}
-
-.table_container table tr th {
-  font-size: 15px;
-  font-weight: 600;
-}
-
 #addUserForm .add_modal .modal-content,
 #updateUserForm .update_modal .modal-content {
   border-radius: 0px;
@@ -623,7 +642,6 @@ main {
 /*--------------------------------------------------------------
 # Career's
 --------------------------------------------------------------*/
-
 .card_container {
   padding: 70px 10%;
 }
@@ -776,10 +794,6 @@ main {
   padding: 25px 5%;
 }
 
-#careersForm .careers_container #careersAlertMsg {
-  display: none;
-}
-
 #careersForm .careers_container .form-control,
 #careersForm .careers_container .form-select  {
   border-radius: 0px;
@@ -824,12 +838,6 @@ main {
 
 #careersForm .modal-body .ck-editor__editable {
   min-height: 200px;
-}
-
-#careersForm .modal-body .invalid-message{
-  margin: 0;
-  font-size: 13px;
-  color: red;
 }
 
 #careersForm .modal-body .image-note {
