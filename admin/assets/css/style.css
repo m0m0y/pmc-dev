@@ -132,7 +132,7 @@ button {
 }
 
 .table_container .primary_btn {
-  padding: 8px 2%;
+  padding: 8px 16px;
   border: 0;
   background-color: #11155d;
   color: white;
@@ -144,7 +144,7 @@ button {
 }
 
 .table_container .table .primary_btn {
-  padding: 7px 14%;
+  padding: 7px 12px;
   border: 0;
   background-color: #11155d;
   color: white;
@@ -156,7 +156,7 @@ button {
 }
 
 .table_container .table .danger_btn {
-  padding: 6px 13%;
+  padding: 6px 11px;
   border: 1px solid #dc3545;
   border-color: #dc3545;
   background-color: transparent;

@@ -19,6 +19,11 @@ class ModelBranch extends db_conn_mysql {
         $query->execute([$branch_name, $branch_address, $branch_tel, $branch_mob, $branch_fax, $branch_email]);
     }
 
+    public function updateBranches($branch_name, $branch_address, $branch_tel, $branch_mob, $branch_fax, $branch_email, $branch_status, $branch_id) {
+        $query = $this->conn->prepare("UPDATE branches SET branch_name = ?, branch_address = ?, branch_tel = ?, branch_mob = ?, branch_fax = ?, branch_email = ?, branch_status = ? WHERE branch_id = ?");
+        $query->execute([$branch_name, $branch_address, $branch_tel, $branch_mob, $branch_fax, $branch_email, $branch_status, $branch_id]);
+    }
+
     public function deleteBranch($id) {
         $query = $this->conn->prepare("DELETE FROM branches WHERE branch_id = ?");
         $query->execute([$id]);

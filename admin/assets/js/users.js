@@ -28,15 +28,6 @@ function loadTable() {
 function addUserModal() {
     $(".add_modal").modal("show");
 
-    document.getElementById("modal_add_close_btn").onclick = () => {
-        let addModalMessageAlert = document.getElementById("modal_add_alert_msg");
-
-        addModalMessageAlert.style.display = "none";
-        addModalMessageAlert.classList.className = '';
-
-        document.getElementById("addUserForm").reset();
-    };
-
     document.querySelector("#addUserForm").addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -86,20 +77,23 @@ function addUserModal() {
         catch(e) {
             console.error(e.message);
         }
+
+        document.getElementById("modal_add_close_btn").onclick = () => {
+            let addModalMessageAlert = document.getElementById("modal_add_alert_msg");
+    
+            addModalMessageAlert.style.display = "none";
+            addModalMessageAlert.classList.className = '';
+    
+            document.getElementById("addUserForm").reset();
+        };
     });
+
+    closeBtn();
 
 }
 
 function updateUserModal(id, username, password, email, userType, status) {
     $(".update_modal").modal("show");
-
-    document.getElementById("modal_update_close_btn").onclick = () => {
-        let updateModalMessageAlert = document.getElementById("modal_update_alert_msg");
-
-        updateModalMessageAlert.style.display = "none";
-        updateModalMessageAlert.classList.className = '';
-    };
-
 
     let inputValue = document.getElementById("updateUserForm").getElementsByTagName("input");
     let selectValue = document.getElementById("updateUserForm").getElementsByTagName("select");
@@ -154,6 +148,9 @@ function updateUserModal(id, username, password, email, userType, status) {
             console.error(e.message);
         }
     });
+
+    closeBtn();
+
 }
 
 function deleteUser(id) {
@@ -182,4 +179,13 @@ function deleteUser(id) {
             console.error(e.message);
         }
     });
+}
+
+function closeBtn() {
+    document.getElementById("modal_update_close_btn").onclick = () => {
+        let updateModalMessageAlert = document.getElementById("modal_update_alert_msg");
+
+        updateModalMessageAlert.style.display = "none";
+        updateModalMessageAlert.classList.className = '';
+    };
 }

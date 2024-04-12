@@ -9,16 +9,16 @@ $pageTitle = "PMC Dashboard - Branches";
 include "components/header.php";
 ?>
 <style>
-    #branchFrom .branch_modal .modal-content {
+    #branchForm .branch_modal .modal-content {
         border-radius: 0px !important;
     }
 
-    #branchFrom .branch_modal .modal-body {
+    #branchForm .branch_modal .modal-body {
         padding: 0;
         border-radius: 0;
     }
 
-    #branchFrom .branch_modal .primary_btn {
+    #branchForm .branch_modal .primary_btn {
         padding: 8px 2%;
         border: 0;
         background-color: #11155d;
@@ -26,11 +26,11 @@ include "components/header.php";
         transition: 0.4s;
     }
 
-    #branchFrom .branch_modal .primary_btn:hover {
+    #branchForm .branch_modal .primary_btn:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     }
 
-    #branchFrom .branch_modal .secondary_btn {
+    #branchForm .branch_modal .secondary_btn {
         padding: 7px 2%;
         border: 1px solid #8ec646;
         border-color: #8ec646;
@@ -39,13 +39,13 @@ include "components/header.php";
         transition: 0.4s;
     }
 
-    #branchFrom .branch_modal .secondary_btn:hover {
+    #branchForm .branch_modal .secondary_btn:hover {
         background-color: #8ec646;
         color: white;
     }
 
-    #branchFrom .branch_modal .modal-header,
-    #branchFrom .branch_modal .modal-footer {
+    #branchForm .branch_modal .modal-header,
+    #branchForm .branch_modal .modal-footer {
         border-bottom: none;
         border-top: none;
         padding-left: 5%;
@@ -54,43 +54,48 @@ include "components/header.php";
         padding-bottom: 35px;
     }
 
-    #branchFrom .branch_modal .modal-header {
+    #branchForm .branch_modal .modal-header {
         padding-top: 35px;
         padding-bottom: 10px;
     }
 
-    #branchFrom .branch_modal .modal-header .modal-title {
+    #branchForm .branch_modal .modal-header .modal-title {
         font-weight: 600;
         color: #11155d;
     }
 
-    #branchFrom .branch_modal .btn-close {
+    #branchForm .branch_modal .btn-close {
         box-shadow: none;
     }
 
-    #branchFrom .branch_modal .modal-body {
+    #branchForm .branch_modal .modal-body {
         padding: 0;
     }
 
-    #branchFrom .branch_container {
+    #branchForm .branch_container {
         padding: 25px 5%;
     }
 
-    #branchFrom .branch_container .form-control,
-    #branchFrom .branch_container .form-select {
+    #branchForm .branch_container .form-control,
+    #branchForm .branch_container .form-select {
         border-radius: 0px;
         border: 0;
         border-bottom: 1px solid #dee2e6;
         transition: 0.3s;
     }
 
-    #branchFrom .branch_container .form-control:focus {
+    #branchForm .branch_container .form-control:focus {
         box-shadow: none;
         border-color: #8ec646;
     }
 
-    #branchFrom .branch_container .form-select:focus {
+    #branchForm .branch_container .form-select:focus {
         box-shadow: none;
+    }
+
+    #branchForm .branch_container .note {
+        font-size: 13px;
+        color: #919191;
     }
 </style>
 
@@ -120,7 +125,6 @@ include "components/header.php";
                 <thead>
                     <tr>
                         <th>Branch</th>
-                        <th>Address</th>
                         <th>Telephone</th>
                         <th>Mobile</th>
                         <th>Fax</th>
@@ -135,13 +139,12 @@ include "components/header.php";
 
         </div>
 
-        <form action="" method="" id="branchFrom">
+        <form action="" method="" id="branchForm">
             <div class="modal fade branch_modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
 
                         <div class="modal-header">
-                            <!-- <h1 class="modal-title fs-5"><i class="bi bi-person-fill-add"></i> Add New <span style="color: #8ec646;"> User </span> </h1> -->
                             <h1 class="modal-title fs-5"></h1>
                         </div>
 
@@ -149,11 +152,12 @@ include "components/header.php";
                             <div class="branch_container">
 
                                 <div class="mb-3" id="messageAlert"></div>
+                                <p class="note"><em>- Follow the indicated number format.</em></p>
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">Branch:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="branch_name" class="form-control" placeholder="Location Name">
+                                        <input type="text" name="branch_name" class="form-control" placeholder="Branch Name">
                                     </div>
                                 </div>
 
@@ -167,28 +171,28 @@ include "components/header.php";
                                 <div class="mt-4 row">
                                     <label class="col-sm-2 col-form-label">Telephone:</label>
                                     <div class="col-sm-10">
-                                        <input type="number" name="branch_tel" class="form-control" placeholder="+63 (0) 0000 0000">
+                                        <input type="text" name="branch_tel" class="form-control" placeholder="+63 (0) 0000 0000">
                                     </div>
                                 </div>
 
                                 <div class="mt-4 row">
                                     <label class="col-sm-2 col-form-label">Mobile No:</label>
                                     <div class="col-sm-10">
-                                        <input type="number" name="branch_mob" class="form-control" placeholder="+63 (000) 0000000">
+                                        <input type="text" name="branch_mob" class="form-control" placeholder="+63 (000) 0000000">
                                     </div>
                                 </div>
 
                                 <div class="mt-4 row">
-                                    <label class="col-sm-2 col-form-label">Fax No:</label>
+                                    <label class="col-sm-2 col-form-label">Fax No: </label>
                                     <div class="col-sm-10">
-                                        <input type="number" name="branch_fax" class="form-control" placeholder="+63 (0) 0000 0000">
+                                        <input type="text" name="branch_fax" class="form-control" placeholder="+63 (0) 0000 0000">
                                     </div>
                                 </div>
 
                                 <div class="mt-4 row">
                                     <label class="col-sm-2 col-form-label">Email:</label>
                                     <div class="col-sm-10">
-                                        <input type="email" name="branch_email" class="form-control" placeholder="Complete email of the branch">
+                                        <input type="email" name="branch_email" class="form-control" placeholder="Branch Email">
                                     </div>
                                 </div>
 
@@ -206,6 +210,7 @@ include "components/header.php";
                         </div>
 
                         <div class="modal-footer">
+                            <input type="hidden" name="branch_id" id="branch_id">
                             <button type="button" class="secondary_btn" id="branchModalCls" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="primary_btn"><i class="bi bi-floppy-fill me-1"></i> Save</button>
                         </div>
@@ -257,7 +262,6 @@ include "components/header.php";
                 },
                 columns: [
                     { "data" : "branch_name" },
-                    { "data" : "branch_address" },
                     { "data" : "branch_tel" },
                     { "data" : "branch_mob" },
                     { "data" : "branch_fax" },
@@ -271,19 +275,86 @@ include "components/header.php";
         function addBrancModal() {
             $(".branch_modal").modal("show");
 
-            document.getElementById("branchFrom").setAttribute("action", "controller/controller.branch.php?mode=addBranch");
-            document.getElementById("branchFrom").setAttribute("method", "post");
+            document.getElementById("branchForm").setAttribute("action", "controller/controller.branch.php?mode=addBranch");
+            document.getElementById("branchForm").setAttribute("method", "post");
             document.querySelector(".modal-title").innerHTML = "<i class='bi bi-pencil-square'></i> Add New <span style='color: #8ec646;'> Branch </span>";
 
-            document.querySelector("#branchFrom").addEventListener("submit", async (e) => {
+            document.querySelector("#branchForm").addEventListener("submit", async (e) => {
                 e.preventDefault();
 
                 let messageAlert = document.getElementById("messageAlert");
 
-                let action = document.getElementById("branchFrom").getAttribute("action");
-                let method = document.getElementById("branchFrom").getAttribute("method");
-                let formData = new FormData(document.getElementById("branchFrom"));
+                let action = document.getElementById("branchForm").getAttribute("action");
+                let method = document.getElementById("branchForm").getAttribute("method");
+                let formData = new FormData(document.getElementById("branchForm"));
+
+                console.log("test");
                 
+                // try {
+                //     const response = await fetch(action , {
+                //         method: method,
+                //         body: formData,
+                //     });
+                //     const result = await response.json();
+
+                //     if(result.status <= 1) {
+                //         $("#messageAlert").html("<p class='alert_message'>"+ result.message +"<button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
+                //         document.querySelector(".btn-close").onclick = () => {
+                //             $("#messageAlert").fadeOut("slow");
+                //         }
+                //     }
+
+                //     if(result.status == 0) {
+                //         messageAlert.classList.remove("danger_alert_msg", "success_alert_msg");
+                //         messageAlert.classList.add("warning_alert_msg");
+                //         return;
+                //     }
+
+                //     if(result.status == 1) {
+                //         messageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
+                //         messageAlert.classList.add("success_alert_msg");
+
+                //         document.getElementById("branchForm").reset();
+                //         $('#branchData').DataTable().destroy();
+                //         loadTable();
+                //         return;
+                //     }
+                // }
+                // catch(e) {
+                //     console.error(e.message);
+                // }
+            });
+
+            closeBtn();
+        }
+
+        function updateBranchModal(branch_id, branch_name, branch_address, branch_tel, branch_mob, branch_fax, branch_email, branch_status) {
+            $(".branch_modal").modal("show");
+
+            document.getElementById("branchForm").setAttribute("action", "controller/controller.branch.php?mode=updateBranch");
+            document.getElementById("branchForm").setAttribute("method", "post");
+            document.querySelector(".modal-title").innerHTML = "<i class='bi bi-pencil-square'></i> Update <span style='color: #8ec646;'>"+ branch_name +"</span>";
+
+            let inputValue = document.getElementById("branchForm").getElementsByTagName("input");
+            let selectValue = document.getElementById("branchForm").getElementsByTagName("select");
+            let branchData = [branch_name, branch_address, branch_tel, branch_mob, branch_fax, branch_email];
+
+            for (let i = 0; i < inputValue.length && i < branchData.length; i++) {
+                inputValue[i].value = branchData[i];
+            }
+
+            (branch_status == "Enabled") ? selectValue.branch_status.value = 1 : "";
+            document.getElementById("branch_id").value = branch_id;
+
+            document.querySelector("#branchForm").addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                let messageAlert = document.getElementById("messageAlert");
+
+                let action = document.getElementById("branchForm").getAttribute("action");
+                let method = document.getElementById("branchForm").getAttribute("method");
+                let formData = new FormData(document.getElementById("branchForm"));
+
                 try {
                     const response = await fetch(action , {
                         method: method,
@@ -295,7 +366,7 @@ include "components/header.php";
                         $("#messageAlert").html("<p class='alert_message'>"+ result.message +"<button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
                         document.querySelector(".btn-close").onclick = () => {
                             $("#messageAlert").fadeOut("slow");
-                        }       
+                        }
                     }
 
                     if(result.status == 0) {
@@ -307,8 +378,7 @@ include "components/header.php";
                     if(result.status == 1) {
                         messageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
                         messageAlert.classList.add("success_alert_msg");
-
-                        document.getElementById("branchFrom").reset();
+                        
                         $('#branchData').DataTable().destroy();
                         loadTable();
                         return;
@@ -319,14 +389,10 @@ include "components/header.php";
                 }
             });
 
-            document.querySelector("#branchModalCls").addEventListener("click", () => {
-                document.getElementById("messageAlert").style.display = "none";
-                document.getElementById("messageAlert").classList.remove("warning_alert_msg", "success_alert_msg", "danger_alert_msg");
-                document.getElementById("branchFrom").reset();
-            });
+            closeBtn();
         }
 
-        function deleteUser(branch_id) {
+        function deleteBranch(branch_id) {
             const apiUrl = "http://localhost/pmc-dev/admin/controller/controller.branch.php?mode=deleteBranch&branch_id="+branch_id;
 
             $(".delete_modal").modal("show");
@@ -350,6 +416,14 @@ include "components/header.php";
                 catch(e) {
                     console.error(e.message);
                 }
+            });
+        }
+
+        function closeBtn() {
+            document.querySelector("#branchModalCls").addEventListener("click", (e) => {
+                document.getElementById("messageAlert").style.display = "none";
+                document.getElementById("messageAlert").classList.remove("warning_alert_msg", "success_alert_msg", "danger_alert_msg");
+                document.getElementById("branchForm").reset();
             });
         }
     </script>

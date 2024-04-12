@@ -16,7 +16,7 @@ switch($mode) {
             $getUser[$k]["password"] = str_pad($s,strlen($v["password"]),"*");
             $getUser[$k]["email"] = $v["email"];
             $getUser[$k]["user_type"] = $v["user_type"];
-            $getUser[$k]["status"] = $v["status"] = ($v["status"] = 1) ? "Enabled" : "Disabled";
+            $getUser[$k]["status"] = $v["status"] = ($v["status"] == 1) ? "Enabled" : "Disabled";
             $getUser[$k]["action"] = "
             <center>
                 <button type='button' class='primary_btn' onclick='updateUserModal(\"". $v['id'] ."\", \"". $v['username'] ."\", \"". $v['password'] ."\", \"". $v['email'] ."\", \"". $v['user_type'] ."\", \"". $v['status'] ."\")'><i class='bi bi-pencil-square'></i></button>

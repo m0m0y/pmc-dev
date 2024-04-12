@@ -17,14 +17,14 @@ switch($mode) {
 
             // Check if the file is exist in the path
             if(file_exists($target_file)) {
-                $response = array("message" => "Sorry, file already exists.", "status" => 3);
+                $response = array("message" => "Sorry, file already exists", "status" => 3);
                 echo json_encode($response);
                 exit;
             }
 
             // Checking the size of the image
             if ($_FILES["careers_img"]["size"] > 500000) {
-                $response = array("message" => "Sorry, your file is too large.", "status" => 2);
+                $response = array("message" => "Sorry, your file is too large", "status" => 2);
                 echo json_encode($response);
                 exit;
             }
@@ -40,11 +40,11 @@ switch($mode) {
 
                 $modelCareers->addCareers($careers_title, $careers_subtitle, $careers_mailto, $careers_content, $career_img, $careers_status);
 
-                $response = array("message" => "Successfully adding new careers in the website.", "status" => 1);
+                $response = array("message" => "Successfully adding new careers in the website", "status" => 1);
                 echo json_encode($response);
                 exit;
             } else {
-                $response = array("message" => "Sorry, there was an error uploading your file.", "status" => 0);
+                $response = array("message" => "Sorry, there was an error uploading your file", "status" => 0);
                 echo json_encode($response);
                 exit;        
             }
@@ -78,14 +78,14 @@ switch($mode) {
 
             // Check if the file is exist in the path
             if(file_exists($target_file)) {
-                $response = array("message" => "Sorry, file already exists.", "status" => 3);
+                $response = array("message" => "Sorry, file already exists", "status" => 3);
                 echo json_encode($response);
                 exit;
             }
 
             // Checking the size of the image
             if ($_FILES["careers_img"]["size"] > 500000) {
-                $response = array("message" => "Sorry, your file is too large.", "status" => 2);
+                $response = array("message" => "Sorry, your file is too large", "status" => 2);
                 echo json_encode($response);
                 exit;
             }
@@ -95,7 +95,7 @@ switch($mode) {
                 $careers_title = $_POST["careers_title"];
                 $careers_subtitle = $_POST["careers_subtitle"];
                 $careers_mailto = $_POST["careers_mailto"];
-                $careers_content =  $_POST["careers_content"];
+                $careers_content = $_POST["careers_content"];
                 $career_img = $_FILES["careers_img"]["name"];
                 $careers_status = $_POST["careers_status"];
                 $careers_id = $_POST["careers_id"];
@@ -124,7 +124,7 @@ switch($mode) {
 
             $modelCareers->updateCareers($careers_title, $careers_subtitle, $careers_mailto, $careers_content, $career_img, $careers_status, $careers_id);
 
-            $response = array("message" => "Update successfully.", "status" => 4);
+            $response = array("message" => "Update successfully", "status" => 4);
             echo json_encode($response);
             exit;
 

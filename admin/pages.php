@@ -23,18 +23,6 @@ include "components/header.php";
         margin-right: auto;
     }
 
-    .table_container .primary_btn {
-        padding: 8px 2%;
-        border: 0;
-        background-color: #11155d;
-        color: white;
-        transition: 0.4s;
-    }
-
-    .table_container .primary_btn:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    }
-
     .addpages_modal .modal-content{
         border-radius: 0px;
     }
