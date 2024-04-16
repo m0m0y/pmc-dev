@@ -501,12 +501,12 @@ main {
 /*--------------------------------------------------------------
 # User
 --------------------------------------------------------------*/
-#addUserForm .add_modal .modal-content,
+#userForm .user_modal .modal-content,
 #updateUserForm .update_modal .modal-content {
   border-radius: 0px;
 }
 
-#addUserForm .add_modal .primary_btn,
+#userForm .user_modal .primary_btn,
 #updateUserForm .update_modal .primary_btn {
   padding: 8px 2%;
   border: 0;
@@ -515,12 +515,12 @@ main {
   transition: 0.4s;
 }
 
-#addUserForm .add_modal .primary_btn:hover,
+#userForm .user_modal .primary_btn:hover,
 #updateUserForm .update_modal .primary_btn:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-#addUserForm .add_modal .secondary_btn,
+#userForm .user_modal .secondary_btn,
 #updateUserForm .update_modal .secondary_btn {
   padding: 7px 2%;
   border: 1px solid #8ec646;
@@ -530,15 +530,15 @@ main {
   transition: 0.4s;
 }
 
-#addUserForm .add_modal .secondary_btn:hover,
+#userForm .user_modal .secondary_btn:hover,
 #updateUserForm .update_modal .secondary_btn:hover {
   background-color: #8ec646;
   color: white;
 }
 
-#addUserForm .add_modal .modal-header,
+#userForm .user_modal .modal-header,
 #updateUserForm .update_modal .modal-header,
-#addUserForm .add_modal .modal-footer,
+#userForm .user_modal .modal-footer,
 #updateUserForm .update_modal .modal-footer {
   border-bottom: none;
   border-top: none;
@@ -548,35 +548,35 @@ main {
   padding-bottom: 35px;
 }
 
-#addUserForm .add_modal .modal-header,
+#userForm .user_modal .modal-header,
 #updateUserForm .update_modal .modal-header {
   padding-top: 35px;
   padding-bottom: 10px;
 }
 
-#addUserForm .add_modal .modal-header .modal-title,
+#userForm .user_modal .modal-header .modal-title,
 #updateUserForm .update_modal .modal-header .modal-title {
   font-weight: 600;
   color: #11155d;
 }
 
-#addUserForm .add_modal .btn-close,
+#userForm .user_modal .btn-close,
 #updateUserForm .update_modal .btn-close {
   box-shadow: none;
 }
 
-#addUserForm .add_modal .modal-body,
+#userForm .user_modal .modal-body,
 #updateUserForm .update_modal .modal-body {
   padding: 0;
 }
 
-#addUserForm .add_container .add_form,
+#userForm .add_container .add_form,
 #updateUserForm .update_container .update_form {
   padding: 25px 5%;
 }
 
-#addUserForm .add_container .form-control,
-#addUserForm .add_container .form-select,
+#userForm .add_container .form-control,
+#userForm .add_container .form-select,
 #updateUserForm .update_container .form-control,
 #updateUserForm .update_container .form-select  {
   border-radius: 0px;
@@ -585,18 +585,18 @@ main {
   transition: 0.3s;
 }
 
-#addUserForm .add_container .form-control:focus,
+#userForm .add_container .form-control:focus,
 #updateUserForm .update_container .form-control:focus {
   box-shadow: none;
   border-color: #8ec646;
 }
 
-#addUserForm .add_container .form-select:focus,
+#userForm .add_container .form-select:focus,
 #updateUserForm .update_container .form-select:focus {
   box-shadow: none;
 }
 
-/* #addUserForm .add_modal .modal-footer,
+/* #userForm .user_modal .modal-footer,
 #updateUserForm .update_modal .modal-footer {
   padding-top: 0;
   padding-bottom: 35px;

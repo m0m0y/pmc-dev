@@ -118,7 +118,7 @@ include "components/header.php";
 
             <div class="mb-3 d-flex align-items-center">
                 <h4 class="table_title">Existing Branches</h4>
-                <button type="button" class="primary_btn" onclick="addBrancModal()"><i class="bi bi-plus-circle-fill"></i> Add New Branch</button>
+                <button type="button" class="primary_btn" onclick="addBranchModal()"><i class="bi bi-plus-circle-fill"></i> Add New Branch</button>
             </div>
 
             <table class="table table-bordered" id="branchData" style="width:100%">
@@ -139,7 +139,7 @@ include "components/header.php";
 
         </div>
 
-        <form action="" method="" id="branchForm">
+        <form action="" method="" id="branchForm" onsubmit="submitForm(event)">
             <div class="modal fade branch_modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
@@ -210,8 +210,8 @@ include "components/header.php";
                         </div>
 
                         <div class="modal-footer">
-                            <input type="hidden" name="branch_id" id="branch_id">
-                            <button type="button" class="secondary_btn" id="branchModalCls" data-bs-dismiss="modal">Close</button>
+                            <input type="hidden" name="branch_id" id="branch_id" readonly>
+                            <button type="button" class="secondary_btn" id="branchModalCls" onclick="closeBtn()">Close</button>
                             <button type="submit" class="primary_btn"><i class="bi bi-floppy-fill me-1"></i> Save</button>
                         </div>
 
@@ -272,60 +272,12 @@ include "components/header.php";
             });
         }
 
-        function addBrancModal() {
+        function addBranchModal() {
             $(".branch_modal").modal("show");
-
+            
             document.getElementById("branchForm").setAttribute("action", "controller/controller.branch.php?mode=addBranch");
             document.getElementById("branchForm").setAttribute("method", "post");
             document.querySelector(".modal-title").innerHTML = "<i class='bi bi-pencil-square'></i> Add New <span style='color: #8ec646;'> Branch </span>";
-
-            document.querySelector("#branchForm").addEventListener("submit", async (e) => {
-                e.preventDefault();
-
-                let messageAlert = document.getElementById("messageAlert");
-
-                let action = document.getElementById("branchForm").getAttribute("action");
-                let method = document.getElementById("branchForm").getAttribute("method");
-                let formData = new FormData(document.getElementById("branchForm"));
-
-                console.log("test");
-                
-                // try {
-                //     const response = await fetch(action , {
-                //         method: method,
-                //         body: formData,
-                //     });
-                //     const result = await response.json();
-
-                //     if(result.status <= 1) {
-                //         $("#messageAlert").html("<p class='alert_message'>"+ result.message +"<button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-                //         document.querySelector(".btn-close").onclick = () => {
-                //             $("#messageAlert").fadeOut("slow");
-                //         }
-                //     }
-
-                //     if(result.status == 0) {
-                //         messageAlert.classList.remove("danger_alert_msg", "success_alert_msg");
-                //         messageAlert.classList.add("warning_alert_msg");
-                //         return;
-                //     }
-
-                //     if(result.status == 1) {
-                //         messageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
-                //         messageAlert.classList.add("success_alert_msg");
-
-                //         document.getElementById("branchForm").reset();
-                //         $('#branchData').DataTable().destroy();
-                //         loadTable();
-                //         return;
-                //     }
-                // }
-                // catch(e) {
-                //     console.error(e.message);
-                // }
-            });
-
-            closeBtn();
         }
 
         function updateBranchModal(branch_id, branch_name, branch_address, branch_tel, branch_mob, branch_fax, branch_email, branch_status) {
@@ -333,7 +285,7 @@ include "components/header.php";
 
             document.getElementById("branchForm").setAttribute("action", "controller/controller.branch.php?mode=updateBranch");
             document.getElementById("branchForm").setAttribute("method", "post");
-            document.querySelector(".modal-title").innerHTML = "<i class='bi bi-pencil-square'></i> Update <span style='color: #8ec646;'>"+ branch_name +"</span>";
+            document.querySelector(".modal-title").innerHTML = "<i class='bi bi-pencil-square'></i> <span style='color: #8ec646;'>"+ branch_name +"</span> Branch";
 
             let inputValue = document.getElementById("branchForm").getElementsByTagName("input");
             let selectValue = document.getElementById("branchForm").getElementsByTagName("select");
@@ -345,52 +297,58 @@ include "components/header.php";
 
             (branch_status == "Enabled") ? selectValue.branch_status.value = 1 : "";
             document.getElementById("branch_id").value = branch_id;
-
-            document.querySelector("#branchForm").addEventListener("submit", async (e) => {
-                e.preventDefault();
-
-                let messageAlert = document.getElementById("messageAlert");
-
-                let action = document.getElementById("branchForm").getAttribute("action");
-                let method = document.getElementById("branchForm").getAttribute("method");
-                let formData = new FormData(document.getElementById("branchForm"));
-
-                try {
-                    const response = await fetch(action , {
-                        method: method,
-                        body: formData,
-                    });
-                    const result = await response.json();
-
-                    if(result.status <= 1) {
-                        $("#messageAlert").html("<p class='alert_message'>"+ result.message +"<button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-                        document.querySelector(".btn-close").onclick = () => {
-                            $("#messageAlert").fadeOut("slow");
-                        }
-                    }
-
-                    if(result.status == 0) {
-                        messageAlert.classList.remove("danger_alert_msg", "success_alert_msg");
-                        messageAlert.classList.add("warning_alert_msg");
-                        return;
-                    }
-
-                    if(result.status == 1) {
-                        messageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
-                        messageAlert.classList.add("success_alert_msg");
-                        
-                        $('#branchData').DataTable().destroy();
-                        loadTable();
-                        return;
-                    }
-                }
-                catch(e) {
-                    console.error(e.message);
-                }
-            });
-
-            closeBtn();
         }
+
+        async function submitForm(e) {
+            e.preventDefault();
+
+            let messageAlert = document.getElementById("messageAlert");
+
+            let action = document.getElementById("branchForm").getAttribute("action");
+            let method = document.getElementById("branchForm").getAttribute("method");
+            let formData = new FormData(document.getElementById("branchForm"));
+
+            try {
+                const response = await fetch(action , {
+                    method: method,
+                    body: formData,
+                });
+                const result = await response.json();
+
+                if(result.status <= 1) {
+                    console.log(result.message);
+                    $("#messageAlert").html("<p class='alert_message'>"+ result.message +"<button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
+                    document.querySelector(".btn-close").onclick = () => {
+                        $("#messageAlert").fadeOut("slow");
+                    }
+                }
+
+                if(result.status == 0) {
+                    messageAlert.classList.remove("danger_alert_msg", "success_alert_msg");
+                    messageAlert.classList.add("warning_alert_msg");
+                    return;
+                }
+
+                if(result.status == 1) {
+                    messageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
+                    messageAlert.classList.add("success_alert_msg");
+
+                    if(result.message != "Update successfully") {
+                        document.getElementById("branchForm").reset();
+                        return;
+                    }
+
+                    $('#branchData').DataTable().destroy();
+                    loadTable();
+                    return;
+                }
+            }
+            catch(e) {
+                console.error(e.message);
+            }
+            
+        }
+
 
         function deleteBranch(branch_id) {
             const apiUrl = "http://localhost/pmc-dev/admin/controller/controller.branch.php?mode=deleteBranch&branch_id="+branch_id;
@@ -420,11 +378,12 @@ include "components/header.php";
         }
 
         function closeBtn() {
-            document.querySelector("#branchModalCls").addEventListener("click", (e) => {
-                document.getElementById("messageAlert").style.display = "none";
-                document.getElementById("messageAlert").classList.remove("warning_alert_msg", "success_alert_msg", "danger_alert_msg");
-                document.getElementById("branchForm").reset();
-            });
+            $(".branch_modal").modal("hide");
+            let messageAlert = document.getElementById("messageAlert");
+
+            messageAlert.style.display = "none";
+            messageAlert.classList.remove("warning_alert_msg", "success_alert_msg", "danger_alert_msg");
+            document.getElementById("branchForm").reset();
         }
     </script>
 

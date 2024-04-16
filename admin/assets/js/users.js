@@ -26,78 +26,26 @@ function loadTable() {
 }
 
 function addUserModal() {
-    $(".add_modal").modal("show");
+    $(".user_modal").modal("show");
 
-    document.querySelector("#addUserForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        let addModalMessageAlert = document.getElementById("modal_add_alert_msg");
-
-        let action = document.getElementById("addUserForm").getAttribute("action");
-        let method = document.getElementById("addUserForm").getAttribute("method");
-        let formData = new FormData(document.getElementById("addUserForm"));
-        
-        try {
-            const response = await fetch(action , {
-                method: method,
-                body: formData,
-            });
-            const result = await response.json();
-
-            if(result.status <= 2) {
-                $("#modal_add_alert_msg").html("<p class='alert_message'>"+ result.message +"<button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-                document.querySelector(".btn-close").onclick = () => {
-                    $("#modal_add_alert_msg").fadeOut("slow");
-                }       
-            }
-
-            if(result.status == 0) {
-                addModalMessageAlert.classList.remove("danger_alert_msg", "success_alert_msg");
-                addModalMessageAlert.classList.add("warning_alert_msg");
-                return;
-            }
-
-            if(result.status == 1) {
-                addModalMessageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
-                addModalMessageAlert.classList.add("success_alert_msg");
-
-                document.getElementById("addUserForm").reset();
-                $('#userData').DataTable().destroy();
-                loadTable();
-                return;
-            }
-
-            if(result.status == 2) {
-                addModalMessageAlert.classList.remove("warning_alert_msg", "success_alert_msg");
-                addModalMessageAlert.classList.add("danger_alert_msg");
-                return;
-            }
-
-        }
-        catch(e) {
-            console.error(e.message);
-        }
-
-        document.getElementById("modal_add_close_btn").onclick = () => {
-            let addModalMessageAlert = document.getElementById("modal_add_alert_msg");
-    
-            addModalMessageAlert.style.display = "none";
-            addModalMessageAlert.classList.className = '';
-    
-            document.getElementById("addUserForm").reset();
-        };
-    });
-
-    closeBtn();
+    document.getElementById("userForm").setAttribute("action", "controller/controller.users.php?mode=addUsers");
+    document.getElementById("userForm").setAttribute("method", "post");
+    document.querySelector(".modal-title").innerHTML = "<i class='bi bi-person-fill-add'></i> Add New <span style='color: #8ec646;'> User </span>";
 
 }
 
-function updateUserModal(id, username, password, email, userType, status) {
-    $(".update_modal").modal("show");
 
-    let inputValue = document.getElementById("updateUserForm").getElementsByTagName("input");
-    let selectValue = document.getElementById("updateUserForm").getElementsByTagName("select");
-    let userData = [id, email, username, password];
+function updateUserModal(id, username, password, email, userType, status) {
+    $(".user_modal").modal("show");
+
+    document.getElementById("userForm").setAttribute("action", "controller/controller.users.php?mode=updateUsers");
+    document.getElementById("userForm").setAttribute("method", "post");
+    document.querySelector(".modal-title").innerHTML = "<i class='bi bi-person-fill-add' style='color: #;'></i> Update <span style='color: #8ec646;'> User </span>";
+
+    let inputValue = document.getElementById("userForm").getElementsByTagName("input");
+    let selectValue = document.getElementById("userForm").getElementsByTagName("select");
+    document.getElementById("user_id").value = id;
+    let userData = [email, username, password];
 
     for (let i = 0; i < inputValue.length && i < userData.length; i++) {
         inputValue[i].value = userData[i];
@@ -105,52 +53,59 @@ function updateUserModal(id, username, password, email, userType, status) {
     
     (status == "Enabled") ? selectValue.status.value = 1 : "";
     selectValue.user_type.value = userType;
+}
 
-    document.querySelector("#updateUserForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
 
-        let updateModalMessageAlert = document.getElementById("modal_update_alert_msg");
+async function submitForm(e) {
+    e.preventDefault();
 
-        let action = document.getElementById("updateUserForm").getAttribute("action");
-        let method = document.getElementById("updateUserForm").getAttribute("method");
-        let formData = new FormData(document.getElementById("updateUserForm"));
+    let messageAlert = document.getElementById("messageAlert");
 
-        try {
-            const response = await fetch(action , {
-                method: method,
-                body: formData,
-            });
-            const result = await response.json();
+    let action = document.getElementById("userForm").getAttribute("action");
+    let method = document.getElementById("userForm").getAttribute("method");
+    let formData = new FormData(document.getElementById("userForm"));
 
-            if(result.status <= 1) {
-                $("#modal_update_alert_msg").html("<p class='alert_message'>"+ result.message +"<button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
-                document.querySelector(".btn-close").onclick = () => { 
-                    $("#modal_update_alert_msg").fadeOut("slow");
-                }
-            }
+    try {
+        const response = await fetch(action , {
+            method: method,
+            body: formData,
+        });
+        const result = await response.json();
 
-            if(result.status == 0) {
-                updateModalMessageAlert.classList.remove("warning_alert_msg", "success_alert_msg");
-                updateModalMessageAlert.classList.add("danger_alert_msg");
-                return;
-            }
-
-            if(result.status == 1) {
-                updateModalMessageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
-                updateModalMessageAlert.classList.add("success_alert_msg");
-
-                $('#userData').DataTable().destroy();
-                loadTable();
-                return;
+        if(result.status <= 2) {
+            $("#messageAlert").html("<p class='alert_message'>"+ result.message +"<button type='button' class='btn-close float-end'></button></p>").fadeIn("slow");
+            document.querySelector(".btn-close").onclick = () => {
+                $("#messageAlert").fadeOut("slow");
             }
         }
-        catch(e) {
-            console.error(e.message);
+
+        if(result.status == 0) {
+            messageAlert.classList.remove("danger_alert_msg", "success_alert_msg");
+            messageAlert.classList.add("warning_alert_msg");
+            return;
         }
-    });
 
-    closeBtn();
+        if(result.status == 1) {
+            messageAlert.classList.remove("danger_alert_msg", "warning_alert_msg");
+            messageAlert.classList.add("success_alert_msg");
+            if(result.message != "The account was successfully updated") {
+                document.getElementById("userForm").reset();
+            }
+            $('#userData').DataTable().destroy();
+            loadTable();
+            return;
+        }
 
+        if(result.status == 2) {
+            messageAlert.classList.remove("warning_alert_msg", "success_alert_msg");
+            messageAlert.classList.add("danger_alert_msg");
+            return;
+        }
+
+    }
+    catch(e) {
+        console.error(e.message);
+    }
 }
 
 function deleteUser(id) {
@@ -182,10 +137,10 @@ function deleteUser(id) {
 }
 
 function closeBtn() {
-    document.getElementById("modal_update_close_btn").onclick = () => {
-        let updateModalMessageAlert = document.getElementById("modal_update_alert_msg");
+    $(".user_modal").modal("hide");
+    let messageAlert = document.getElementById("messageAlert");
 
-        updateModalMessageAlert.style.display = "none";
-        updateModalMessageAlert.classList.className = '';
-    };
+    messageAlert.style.display = "none";
+    messageAlert.classList.remove("warning_alert_msg", "success_alert_msg", "danger_alert_msg");
+    document.getElementById("userForm").reset();
 }

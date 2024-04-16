@@ -36,8 +36,7 @@ switch($mode) {
         $branch_status = $_POST["branch_status"];
 
         if (!empty($branch_name) && !empty($branch_address) && !empty($branch_tel) && !empty($branch_email)) {
-            // $modelBranch->addNewBranch($branch_name, $branch_address, $branch_tel, $branch_mob, $branch_fax, $branch_email);
-            echo "test";
+            $modelBranch->addNewBranch($branch_name, $branch_address, $branch_tel, $branch_mob, $branch_fax, $branch_email);
             $response = array("message" => "You successfully add new branch", "status" => 1);
         } else {
             $response = array("message" => "Please fill up the required field!", "status" => 0);

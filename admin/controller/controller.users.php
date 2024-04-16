@@ -50,7 +50,7 @@ switch($mode) {
         break;
     
     case "updateUsers":
-        $id = $_POST["id"];
+        $id = $_POST["user_id"];
         $email = $_POST["email"];
         $username = $_POST["username"];
         $password = $_POST["password"];
@@ -59,7 +59,7 @@ switch($mode) {
 
         if (!empty($email) && !empty($username) && !empty($password)) {
             $modelUsers->updateUser($id, $email, $username, $password, $status, $user_type);
-            $response = array("message" => "The account was successfully updated.", "status" => 1);
+            $response = array("message" => "The account was successfully updated", "status" => 1);
         } else {
             $response = array("message" => "Please fill up the required field!", "status" => 0);
         }
